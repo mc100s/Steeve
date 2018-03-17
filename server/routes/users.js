@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Opps = require('../models/opportunity');
+const Notes = require('../models/note');
 const passport = require('passport');
 const config = require('../config');
 
@@ -16,14 +18,28 @@ const storage = cloudinaryStorage({
 
 const parser = multer({ storage });
 
+// router.get('/:id', (req, res, next) => {
+//   User.find({_id: req.params.id}).populate('opportunities').populate('notes')    
+//     .then(users => {
+//       res.json(users)
+//     })
+// });
 
-// Route to get all users
-router.get('/', (req, res, next) => {
-  User.find()
-    .then(users => {
-      res.json(users)
+router.get('/opportunities', (req, res, next) => {
+  Opps.find({}).populate('owner').populate('notes')    
+    .then(opps => {
+      res.json(opps)
     })
 });
+
+
+// Route to get all users
+// router.get('/', (req, res, next) => {
+//   User.find()
+//     .then(users => {
+//       res.json(users)
+//     })
+// });
 
 // Route to add a picture on one user
 // To perform the request throw Postman, you need
@@ -36,14 +52,15 @@ router.get('/', (req, res, next) => {
 //     <input type="file" name="picture" />
 //     <input type="submit" value="Upload" />
 //   </form>
-router.post('/picture-one-user', parser.single('picture'), (req, res, next) => {
-  User.findOneAndUpdate({}, {pictureUrl: req.file.url })
-    .then(() => {
-      res.json({
-        success: true,
-        pictureUrl: req.file.url
-      })
-    })
-});
+
+// router.post('/picture-one-user', parser.single('picture'), (req, res, next) => {
+//   User.findOneAndUpdate({}, {pictureUrl: req.file.url })
+//     .then(() => {
+//       res.json({
+//         success: true,
+//         pictureUrl: req.file.url
+//       })
+//     })
+// });
 
 module.exports = router;

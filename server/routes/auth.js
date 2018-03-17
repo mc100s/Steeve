@@ -22,11 +22,11 @@ router.post('/signup', (req, res, next) => {
   // extract the info we need from the body
   // of the request
   console.log("DEBUG req.body", req.body)
-  const { username, name, password } = req.body;
+  const { email, lastName, password } = req.body;
   const { file } = req;
   const user = new User({
-    username,
-    name
+   email,
+    lastName
   });
 
   User.register(user, password, err => {
@@ -37,11 +37,11 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   const authenticate = User.authenticate();
-  const { username, password } = req.body;
-  // check if we have a username and password
-  if (username && password) {
+  const { email, password } = req.body;
+  // check if we have a email and password
+  if (email && password) {
     // test if the credentials are valid
-    authenticate(username, password, (err, user, failed) => {
+    authenticate(email, password, (err, user, failed) => {
       if (err) {
         // an unexpected error from the database
         return next(err);

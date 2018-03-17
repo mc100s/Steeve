@@ -1,0 +1,10 @@
+{ 
+type: 'Opportunity',
+url: '/services/data/v39.0/sobjects/Opportunity/0060N00000TkJitQAF' },
+Amount: 1000000,
+Id: '0060N00000TkJitQAF',
+Account: { 
+    attributes: [Object], Id: '0010N00004BqdikQAB' 
+    },
+Name: 'SuperBig Deal' 
+},
