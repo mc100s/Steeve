@@ -10,17 +10,16 @@ const errHandler = err => {
 };
 
 export default {
-  // service() {
-  //   return service
-  // }
   service: service,
 
-  getCountries() {
+  getNotes() {
     return service
-      .get('/countries')
-      .then(res => res.data)
-      .catch(errHandler);
+    .get('notes')
+    .then(res => res.data)
+    .catch(errHandler);
   }
+
+};
   // signup(userInfo) {
   //   const formData = new FormData();
   //   Object.keys(userInfo).forEach(key => formData.append(key, userInfo[key]));
@@ -71,4 +70,4 @@ export default {
   //   }
   //   return false;
   // },
-};
+

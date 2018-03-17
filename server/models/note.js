@@ -14,7 +14,7 @@ const noteSchema = new Schema({
   currentItemsLabel : [String], // ex: Pain, Buyer, Decision Process,
   sfdcItemsLabel : [String],
   persoItemsLabel : [String],
-  textInputs:[String],  // This is all that is typed by sales Rep
+  textInputs:[{label:String, text:String}],  // This is all that is typed by sales Rep
   todoLists :[{type : mongoose.Schema.Types.ObjectId, ref: 'todoList' }],
   owner : {type : mongoose.Schema.Types.ObjectId, ref: 'User' },
     // Items from Sprocess

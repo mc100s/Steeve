@@ -22,7 +22,7 @@ User.remove({}, function(err) {
             firstName: 'Jordan' ,
             lastName: 'Wolf',
             pictureUrl: 'https://www.thewrap.com/wolf-wall-street-isnt-new-10-movies-made-breaking-law-look-totally-worth-photos/1/',             
-            email:  "jordan.belfort@",
+            email:  "jordan.wolf@campany.com",
             company:  'Wall Street Stock Trusty Company',
             myAccountsList : [],
             opportunities : [],
@@ -81,9 +81,21 @@ User.remove({}, function(err) {
                   modification : [new Date("2018-03-03")],
                   name : 'Call with Project Manager', // make coexist SFDC and own name here
                   currentItemsLabel : ['MEEDIC', 'Timing'], // ex: Pain, Buyer, Decision Process,
-                  sfdcItemsLabel : ['Boring filed 1', 'Boring Field 2'],
-                  persoItemsLabel : ['Perso label 1', 'Perso Label3'],
-                  textInputs:['blablablbalblbalblablablablablab'],  // This is all that is typed by sales Rep
+                  sfdcItemsLabel : ['Pains', 'Metrics', 'EB'],
+                  persoItemsLabel : ['Personnal Win', 'Hate Somebody'],
+                  textInputs:[{
+                    label : 'Pains', 
+                    text:'Daily Dowtime 30 minutes'
+                  }, 
+                  {
+                    label:'Metrics', 
+                    text:'9 dev spent 15 min per day fixing the prbm !'
+                  },
+                  {
+                    label:'EB', 
+                    text:'Very Busy CEO'}                  
+                  ],  
+                  
                   sfdcCustomerContacts:[accounts[0]._id],
                   todoLists :[],
                   owner : userDocs[0]._id ,
