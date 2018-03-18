@@ -1,24 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
-
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import api from './api';
+import MyNotes from './myNotes';
 import logo from './logo.svg';
 import './App.css';
 import ReactDOM from 'react-dom';
 
 
-// import Home from './Home';
-// import Countries from './MyBusiness';
-import AddCountry from './MyNotes';
 // import Secret from './Settings';
 // import Secret from './Steeve';
 // import Login from './Login';
@@ -31,7 +19,7 @@ import AddCountry from './MyNotes';
 
 
 
-class Header extends Component {
+class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -48,35 +36,14 @@ class Header extends Component {
   
   render() {                
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React Countries</h1>
-          {/* <Link to="/">Home</Link> 
-          <Link to="/myBusiness">myBusiness</Link>  */}
-          <Link to="/myNotes">myNotes</Link> 
-          {/* {!api.isLoggedIn() && <Link to="/signup">Signup</Link> }
-          {!api.isLoggedIn() && <Link to="/login">Login</Link> }
-          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }
-          {/* <Link to="/settings">Settings</Link>  */}
-          {/* <Link to="/Steeve">Steeve</Link> } */}
-        </header>
-        <Switch>
-          {/* <Route path="/" exact component={Home} />
-          <Route path="/myBusiness" component={MyBusiness} /> */}
-          <Route path="/myNotes" component={MyNotes} />
-          {/* <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/steeve" component={Steeve} />
-          <Route render={() => <h2>404</h2>} /> */}
-        </Switch>        
+     <div>
+       <p>This is Home</p>
       </div>
     );
   }
 }
 
-export default App;
+export default Home;
 
 
 
@@ -201,3 +168,17 @@ class Country extends Component {
   
 }
 */
+
+{/* <div className="App">
+<header className="App-header">
+  <img src={logo} className="App-logo" alt="logo" />
+  <h1 className="App-title">Welcome to React Countries</h1>
+  <Link to="/myNotes">Home</Link>
+  <Link to="/myNotes">myNotes</Link> 
+  
+</header>
+<Switch>
+  
+  <Route path="/myNotes" component={MyNotes} />
+  
+</Switch>         */}
