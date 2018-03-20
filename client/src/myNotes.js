@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Switch } from 'react';
 import { Route, Link } from 'react-router-dom';
 import api from './api';
 import logo from './logo.svg';
@@ -6,21 +6,20 @@ import './App.css';
 
 
 class NoteCard extends Component {
-
-
+  
+  
   render() {                
     return (
       <div className="App">
-        <h4>{this.props.note.name}</h4>
-        <h4>this is the label: : {this.props.note.textInputs[0].label}</h4>
-        {/* <h4>{this.props.note.name}</h4>
-        <h4>{this.props.note.name}</h4>
-        <h4>{this.props.note.name}</h4> */}
-     </div>
-    );
-  }
+      <h4 className="Note-title"><Link to={`/note/${this.props.note.name}`}>{this.props.note.name}</Link></h4>
+      {/* <Switch>
+        <Route path={`/note/${this.props.note.name}`} component={Home} />
+      </Switch>   */}
+    </div>
+  );
 }
-class MyNotes extends Component {
+}
+export class MyNotes extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,21 +35,99 @@ class MyNotes extends Component {
         notes: resp
       })
     })
-    }
- 
-  
+  }
+
   render() {                
     return (
       <div className="App">
       <h2>Mes notes : {this.state.notes.map((note)=>{
-          return (<NoteCard note={note}></NoteCard>)
-        })}
+        return (<NoteCard note={note}></NoteCard>)
+      })}
       </h2>
-     </div>
+      </div>
     );
   }
 }
 
 
+class Note extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      note_id: '',
+      name:'',
+      currentItemsLabel : [],
+      sfdcItemsLabel: [],
+      persoItemsLabel : [],
+      textInputs:[{}],
+      todoLists : [],
+      owner: [],
+      // textInputs:[{label:String, text:String}],  // This is all that is typed by sales Rep
+    }
+  }
+  
+  
+  componentDidMount() {
+    api.createNote()
+    .then((resp) => {
+      console.log('note', resp)
+      this.setState({ 
+        note_id : resp._id,
+        name:resp,
+        currentItemsLabel : [],
+        sfdcItemsLabel: [],
+        persoItemsLabel : [],
+        textInputs:[{}],
+        todoLists : [],
+        owner: [],
+        
+      })
+    })
+  }
+  
+  
+  
+  render() {                
+    return (
+      <div>
+      <p>MyBusiness</p>
+      </div>
+    );
+  }
+}
 
-export default MyNotes;
+export class AddNote extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      note_id: ''
+    }
+  }   
+  
+  componentDidMount() {
+    api.createNote()
+    .then((resp) => {
+      console.log('note', resp)
+      this.setState({ 
+        note_id : resp
+      })
+    })
+  }
+  
+  
+  //load note template
+  //load layers
+  //show input field
+  //Autosave every 60 secs
+  
+  
+  render() {                
+    return (
+      <div>
+      <p>MyBusiness</p>
+      </div>
+    );
+  }
+}
+
+export default MyNotes

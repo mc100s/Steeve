@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import api from './api';
-import MyNotes from './myNotes';
+import {MyNotes, AddNote} from './myNotes';
 import logo from './logo.svg';
 import './App.css';
+import Notes from './Notes';
 import ReactDOM from 'react-dom';
 
 
@@ -38,10 +39,13 @@ class MyBusiness extends Component {
     return (
      <div>
        <p>MyBusiness</p>
+       <AddNote/>
       </div>
     );
   }
 }
+
+
 
 export default MyBusiness;
 

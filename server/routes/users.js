@@ -28,6 +28,7 @@ const parser = multer({ storage });
 router.get('/opportunities', (req, res, next) => {
   Opps.find({}).populate('owner').populate('notes')    
     .then(opps => {
+      console.log(opps)
       res.json(opps)
     })
 });

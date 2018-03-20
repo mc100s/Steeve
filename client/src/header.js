@@ -59,7 +59,7 @@ class Header extends Component {
           <Route path="/myBusiness" component={MyBusiness} />
           <Route path="/mySettings" component={MySettings} />
           <Route path="/steve" component={Steve} />
-          
+          {/* <Route path={`/note/${this.props.note.name}`} component={noteDetail} /> */}
         </Switch>        
       </div>
     );
