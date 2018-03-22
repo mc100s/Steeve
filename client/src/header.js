@@ -7,11 +7,14 @@ import './App.css';
 import ReactDOM from 'react-dom';
 
 
-import MyNotes from './myNotes';
+// import MyNotes from './myNotes';
 import Home from './home';
 import MyBusiness from './myBusiness';
 import MySettings from './mySettings';
 import Steve from './steve';
+// import NoteDetail from './noteDetail';
+import Note from './noteDetail';
+import Notes from './Notes';
 
 // import Secret from './Settings';
 
@@ -55,7 +58,7 @@ class Header extends Component {
         </header>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/myNotes" component={MyNotes} />
+          <Route path="/myNotes" component={Notes} />
           <Route path="/myBusiness" component={MyBusiness} />
           <Route path="/mySettings" component={MySettings} />
           <Route path="/steve" component={Steve} />

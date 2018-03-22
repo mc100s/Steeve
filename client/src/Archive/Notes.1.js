@@ -1,49 +1,54 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import api from './api';
-// import MyNotes from './myNotes';
 import logo from './logo.svg';
 import './App.css';
-import ReactDOM from 'react-dom';
 
 
-// import Secret from './Settings';
-// import Secret from './Steeve';
-// import Login from './Login';
-// import Signup from './Signup';
-// import api from '../api';
-// import logo from '../logo.svg';
-
-
-//import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
-
-
-
-class Home extends Component {
+class NoteCard extends Component {
+  render() {                
+    return (
+      <div className="App">
+        <h4>{this.props.note.name}</h4>
+        <h4>{this.props.note.name}</h4>
+        <h4>{this.props.note.name}</h4>
+        <h4>{this.props.note.name}</h4>
+     </div>
+    );
+  }
+}
+class Notes extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      x: []
+      notes: []
     }
   }
-  // componentDidMount() {
-  //   api.getNotes()
-  //   .then((resp) => {
-  //     console.log('apres', resp)
-  //   })
-  //   }
+  componentDidMount() {
+    api.getNotes()
+    .then((resp) => {
+      console.log('apres', resp)
+      this.setState({
+        notes: resp
+      })
+
+    })
+    }
  
   
   render() {                
     return (
-     <div>
-       <p>This is Home</p>
-      </div>
+      <div className="App">
+      <h2>Mes notes : {this.state.notes.map((note)=>{
+          return (<NoteCard note={note}></NoteCard>)
+        })}
+      </h2>
+     </div>
     );
   }
 }
 
-export default Home;
+export default Notes;
 
 
 
@@ -168,17 +173,3 @@ class Country extends Component {
   
 }
 */
-
-{/* <div className="App">
-<header className="App-header">
-  <img src={logo} className="App-logo" alt="logo" />
-  <h1 className="App-title">Welcome to React Countries</h1>
-  <Link to="/myNotes">Home</Link>
-  <Link to="/myNotes">myNotes</Link> 
-  
-</header>
-<Switch>
-  
-  <Route path="/myNotes" component={MyNotes} />
-  
-</Switch>         */}

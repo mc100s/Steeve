@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import api from './api';
 import logo from './logo.svg';
 import './App.css';
+import NoteDetail from './noteDetail';
 
 
 class NoteCard extends Component {
@@ -12,6 +13,7 @@ class NoteCard extends Component {
     return (
       <div className="App">
       <h4 className="Note-title"><Link to={`/note/${this.props.note.name}`}>{this.props.note.name}</Link></h4>
+      <NoteDetail/>
       {/* <Switch>
         <Route path={`/note/${this.props.note.name}`} component={Home} />
       </Switch>   */}
