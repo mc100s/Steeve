@@ -98,38 +98,6 @@ class Note extends Component {
   }
 }
 
-export class AddNote extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      note_id: ''
-    }
-  }   
-  
-  componentDidMount() {
-    api.createNote()
-    .then((resp) => {
-      console.log('note', resp)
-      this.setState({ 
-        note_id : resp
-      })
-    })
-  }
-  
-  
-  //load note template
-  //load layers
-  //show input field
-  //Autosave every 60 secs
-  
-  
-  render() {                
-    return (
-      <div>
-      <p>MyBusiness</p>
-      </div>
-    );
-  }
-}
+
 
 export default MyNotes

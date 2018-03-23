@@ -39,7 +39,7 @@ class MyBusiness extends Component {
     return (
      <div>
        <p>MyBusiness</p>
-       <AddNote/>
+    
       </div>
     );
   }

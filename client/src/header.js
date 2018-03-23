@@ -15,6 +15,7 @@ import Steve from './steve';
 // import NoteDetail from './noteDetail';
 import Note from './noteDetail';
 import Notes from './Notes';
+import AddNote from './addNote';
 
 // import Secret from './Settings';
 
@@ -62,6 +63,7 @@ class Header extends Component {
           <Route path="/myBusiness" component={MyBusiness} />
           <Route path="/mySettings" component={MySettings} />
           <Route path="/steve" component={Steve} />
+          <Route path="/addNote" component={AddNote} />
           {/* <Route path={`/note/${this.props.note.name}`} component={noteDetail} /> */}
         </Switch>        
       </div>
