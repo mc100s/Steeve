@@ -1,9 +1,7 @@
 import React, { Component, Switch } from 'react';
 import { Route, Link } from 'react-router-dom';
-import api from './api';
-import logo from './logo.svg';
-import './App.css';
-import NoteDetail from './noteDetail';
+import api from '../api';
+import NoteDetail from './NoteDetail';
 
 
 class NoteCard extends Component {

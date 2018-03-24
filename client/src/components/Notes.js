@@ -1,49 +1,72 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
-import api from './api';
-import MyNotes from './myNotes';
-import logo from './logo.svg';
-import './App.css';
-import ReactDOM from 'react-dom';
+import { Route, Link } from 'react-router-dom';
+import api from '../api';
+import AddNote from './AddNote';
 
 
-// import Secret from './Settings';
-// import Secret from './Steeve';
-// import Login from './Login';
-// import Signup from './Signup';
-// import api from '../api';
-// import logo from '../logo.svg';
-
-
-//import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
-
-
-
-class MySettings extends Component {
+class NoteCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      x: []
+      notes: []
+    } 
+  };
+  
+  goodData(notes) {
+    let dataOk = []
+    for (let i = 0; i<notes.textInputs.length; i++) {
+      dataOk.push((<div><div>{notes.textInputs[i].label}:{notes.textInputs[i].text}</div></div>))
     }
+    return dataOk
   }
-  // componentDidMount() {
-  //   api.getNotes()
-  //   .then((resp) => {
-  //     console.log('apres', resp)
-  //   })
-  //   }
- 
   
   render() {                
     return (
-     <div>
-       <p>This is My settings</p>
+      <div className="App">
+      <h3>{this.props.note.name}</h3>
+      <h4>{this.goodData(this.props.note)}</h4>
+      </div>
+    )
+  }
+}
+
+class Notes extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      notes: []
+    }
+  }
+  componentDidMount() {
+    api.getNotes()
+    .then((resp) => {
+      console.log('apres', resp)
+      this.setState({
+        notes: resp
+      })
+      
+    })
+  }
+  
+  
+  render() {                
+    return (
+      <div className="App">
+      <br/>
+      {/* <AddNote/> */}
+      <Link to="/addNote">Add Note</Link>
+      <div>{this.state.notes.map((note)=>{
+        return (<NoteCard note={note}></NoteCard>)
+      })}
+      </div>
       </div>
     );
   }
 }
 
-export default MySettings;
+
+
+export default Notes;
 
 
 
@@ -95,9 +118,9 @@ class App extends Component {
         {this.state.countries.map((c, i) => <li key={i}>{c.name}</li>)}
         </div>
       )} />
-       <Country/>
+      <Country/>
       </div>
-     
+      
     );
   }
 }
@@ -111,11 +134,11 @@ class Country extends Component {
       areaCode:"",
       description:""
     }
-
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   handleChange(event, value) {
     let newState = {}
     newState[value] =  event.target.value
@@ -123,25 +146,25 @@ class Country extends Component {
     this.setState(newState);
     
   }
-
+  
   handleSubmit(event) {
     api.service.post('/countries',{})
     .then(
       (value) => {
         console.log(value)
         return (value)
-
+        
       }
-
+      
     )
     .catch()
-  
+    
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
-
-  render() {
   
+  render() {
+    
     return (
       <form onSubmit={this.handleSubmit}>
       <label>
@@ -168,17 +191,3 @@ class Country extends Component {
   
 }
 */
-
-{/* <div className="App">
-<header className="App-header">
-  <img src={logo} className="App-logo" alt="logo" />
-  <h1 className="App-title">Welcome to React Countries</h1>
-  <Link to="/myNotes">Home</Link>
-  <Link to="/myNotes">myNotes</Link> 
-  
-</header>
-<Switch>
-  
-  <Route path="/myNotes" component={MyNotes} />
-  
-</Switch>         */}

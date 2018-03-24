@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import api from './api';
-// import MyNotes from './myNotes';
-import logo from './logo.svg';
-import './App.css';
+import api from '../api';
 import ReactDOM from 'react-dom';
 
 

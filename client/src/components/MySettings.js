@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import api from './api';
-import {MyNotes, AddNote} from './myNotes';
-import logo from './logo.svg';
-import './App.css';
-import Notes from './Notes';
+import api from '../api';
+import MyNotes from './MyNotes';
 import ReactDOM from 'react-dom';
 
 
@@ -20,7 +17,7 @@ import ReactDOM from 'react-dom';
 
 
 
-class MyBusiness extends Component {
+class MySettings extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,16 +35,13 @@ class MyBusiness extends Component {
   render() {                
     return (
      <div>
-       <p>MyBusiness</p>
-    
+       <p>This is My settings</p>
       </div>
     );
   }
 }
 
-
-
-export default MyBusiness;
+export default MySettings;
 
 
 

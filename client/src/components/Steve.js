@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import api from './api';
-
-import logo from './steve.png';
-import './App.css';
+import api from '../api';
+import MyNotes from './MyNotes';
 import ReactDOM from 'react-dom';
 
 
-// import MyNotes from './myNotes';
-import Home from './home';
-import MyBusiness from './myBusiness';
-import MySettings from './mySettings';
-import Steve from './steve';
-// import NoteDetail from './noteDetail';
-import Note from './noteDetail';
-import Notes from './Notes';
-import AddNote from './addNote';
-
 // import Secret from './Settings';
-
+// import Secret from './Steeve';
 // import Login from './Login';
 // import Signup from './Signup';
 // import api from '../api';
@@ -29,7 +17,7 @@ import AddNote from './addNote';
 
 
 
-class Header extends Component {
+class Steve extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -46,32 +34,14 @@ class Header extends Component {
   
   render() {                
     return (
-      <div className="">
-        <header className="">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="">Welcome to Steve</h1>
-          <Link to="/home">Home</Link>
-          <Link to="/myNotes"> My Notes</Link> 
-          <Link to="/myBusiness"> My Business</Link>
-          <Link to="/mySettings"> Settings</Link>  
-          <Link to="/steve"> Steve</Link>  
-          
-        </header>
-        <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/myNotes" component={Notes} />
-          <Route path="/myBusiness" component={MyBusiness} />
-          <Route path="/mySettings" component={MySettings} />
-          <Route path="/steve" component={Steve} />
-          <Route path="/addNote" component={AddNote} />
-          {/* <Route path={`/note/${this.props.note.name}`} component={noteDetail} /> */}
-        </Switch>        
+     <div>
+       <p>This is Steve</p>
       </div>
     );
   }
 }
 
-export default Header;
+export default Steve;
 
 
 
@@ -196,3 +166,17 @@ class Country extends Component {
   
 }
 */
+
+{/* <div className="App">
+<header className="App-header">
+  <img src={logo} className="App-logo" alt="logo" />
+  <h1 className="App-title">Welcome to React Countries</h1>
+  <Link to="/myNotes">Home</Link>
+  <Link to="/myNotes">myNotes</Link> 
+  
+</header>
+<Switch>
+  
+  <Route path="/myNotes" component={MyNotes} />
+  
+</Switch>         */}

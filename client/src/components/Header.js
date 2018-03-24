@@ -1,12 +1,34 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import api from './api';
-import logo from './logo.svg';
-import './App.css';
-import Notes from './Notes';
-import Header from './header';
+import { Route, Link, Switch } from 'react-router-dom';
+import api from '../api';
 
-class App extends Component {
+import logo from '../steve.png';
+import ReactDOM from 'react-dom';
+
+
+// import MyNotes from './myNotes';
+import Home from './Home';
+import MyBusiness from './MyBusiness';
+import MySettings from './MySettings';
+import Steve from './Steve';
+// import NoteDetail from './NoteDetail';
+import Note from './NoteDetail';
+import Notes from './Notes';
+import AddNote from './AddNote';
+
+// import Secret from './Settings';
+
+// import Login from './Login';
+// import Signup from './Signup';
+// import api from '../api';
+// import logo from '../logo.svg';
+
+
+//import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
+
+
+
+class Header extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,20 +45,32 @@ class App extends Component {
   
   render() {                
     return (
-      <div className="App">
-           <Header/>
-    
- 
-     </div>
+      <div className="">
+        <header className="">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="">Welcome to Steve</h1>
+          <Link to="/home">Home</Link>
+          <Link to="/myNotes"> My Notes</Link> 
+          <Link to="/myBusiness"> My Business</Link>
+          <Link to="/mySettings"> Settings</Link>  
+          <Link to="/steve"> Steve</Link>  
+          
+        </header>
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/myNotes" component={Notes} />
+          <Route path="/myBusiness" component={MyBusiness} />
+          <Route path="/mySettings" component={MySettings} />
+          <Route path="/steve" component={Steve} />
+          <Route path="/addNote" component={AddNote} />
+          {/* <Route path={`/note/${this.props.note.name}`} component={noteDetail} /> */}
+        </Switch>        
+      </div>
     );
   }
 }
 
-
-
-
-
-export default App;
+export default Header;
 
 
 

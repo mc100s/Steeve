@@ -1,9 +1,8 @@
 import React, { Component, Switch } from 'react';
 import { Route, Link } from 'react-router-dom';
-import api from './api';
-import logo from './logo.svg';
+import api from '../api';
 import './App.css';
-import NoteDetail from './noteDetail';
+import NoteDetail from './NoteDetail';
 
 class AddNote extends Component {
   constructor(props) {
@@ -43,7 +42,7 @@ class AddNote extends Component {
       todolists : []
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     let kikou = 'var dns le constructor'
   }
   
@@ -68,19 +67,8 @@ class AddNote extends Component {
     this.setState({
       value : this.state.textInputs[p].text
     }) 
-    // if (!this.state.textInputs[p].text === '') { this.setState({
-    //   value : this.state.textInputs[p].text}) 
-    // }
-    // else {
-    //   this.setState({
-    //     value : ''
-    //   })
-    // }
   }
-  
-  //state = valuer de l'input
-  
-  
+
   handleText(e){
     console.log('handle texte 1');
     
@@ -95,8 +83,6 @@ class AddNote extends Component {
         p = i
       }
     }
-    // console.log("p", p);
-    // let newText2 = newText.concat(' ');
     newTextInputs[p].text =  newText
     this.setState({
       textInputs: newTextInputs
@@ -105,9 +91,19 @@ class AddNote extends Component {
     
   }
   
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+  autoSave() {
+    let changed = false;
+
+  }
+
+
+  handleClick(e) {
+    e.preventDefault();
+    console.log('clicked');
+    api.createNote(this.state)
+    .then(console.log('note created'))
+    
+    
   }
   
   render() {                
@@ -127,11 +123,8 @@ class AddNote extends Component {
       </h3>
       <div>
       <form onSubmit={this.handleSubmit}>
- 
-      
       <textarea  value={this.state.value} onChange={this.handleText.bind(this)}></textarea>
-  
-      <input type="submit" value="Save Steve!" />
+      <input type="submit" value="Save Steve!" onclick={this.handleClick}/>
       </form>
       </div>
     </div>
@@ -139,26 +132,4 @@ class AddNote extends Component {
 }
 }
 
-
-
 export default AddNote
-
-// noteProcess() {
-
-//   this.state.meslabels = this.state.textInputs.map((label) => {return (
-//     <div className="">
-//     <button
-//     className=""
-//     onClick={console.log('cliké')}>{label.label}</button>
-//     </div>)}
-//   )
-// }
-
-// componentDidMount() {
-//   this.noteProcess()
-// }
-
-
-// <button
-//       className="btn btn-default"
-//       onClick={this.noteProcess.bind(this)}>Add a Note</button>

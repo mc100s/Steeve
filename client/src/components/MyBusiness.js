@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import api from './api';
-import MyNotes from './myNotes';
-import logo from './logo.svg';
-import './App.css';
+import api from '../api';
+import {MyNotes, AddNote} from './MyNotes';
+import Notes from './Notes';
 import ReactDOM from 'react-dom';
 
 
@@ -19,7 +18,7 @@ import ReactDOM from 'react-dom';
 
 
 
-class Steve extends Component {
+class MyBusiness extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -37,13 +36,16 @@ class Steve extends Component {
   render() {                
     return (
      <div>
-       <p>This is Steve</p>
+       <p>MyBusiness</p>
+    
       </div>
     );
   }
 }
 
-export default Steve;
+
+
+export default MyBusiness;
 
 
 

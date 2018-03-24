@@ -1,74 +1,42 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import api from './api';
-import logo from './logo.svg';
+import api from '../api';
+import logo from '../logo.svg';
 import './App.css';
-import AddNote from './addNote';
+import Notes from './Notes';
+import Header from './Header';
 
-
-class NoteCard extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      notes: []
-    } 
-  };
-  
-  goodData(notes) {
-    let dataOk = []
-    for (let i = 0; i<notes.textInputs.length; i++) {
-      dataOk.push((<div><div>{notes.textInputs[i].label}:{notes.textInputs[i].text}</div></div>))
+      x: []
     }
-    return dataOk
   }
+  // componentDidMount() {
+  //   api.getNotes()
+  //   .then((resp) => {
+  //     console.log('apres', resp)
+  //   })
+  //   }
+ 
   
   render() {                
     return (
       <div className="App">
-      <h3>{this.props.note.name}</h3>
-      <h4>{this.goodData(this.props.note)}</h4>
-      </div>
-    )
-  }
-}
-
-class Notes extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      notes: []
-    }
-  }
-  componentDidMount() {
-    api.getNotes()
-    .then((resp) => {
-      console.log('apres', resp)
-      this.setState({
-        notes: resp
-      })
-      
-    })
-  }
-  
-  
-  render() {                
-    return (
-      <div className="App">
-      <br/>
-      {/* <AddNote/> */}
-      <Link to="/addNote">Add Note</Link>
-      <div>{this.state.notes.map((note)=>{
-        return (<NoteCard note={note}></NoteCard>)
-      })}
-      </div>
-      </div>
+           <Header/>
+    
+ 
+     </div>
     );
   }
 }
 
 
 
-export default Notes;
+
+
+export default App;
 
 
 
@@ -120,9 +88,9 @@ class App extends Component {
         {this.state.countries.map((c, i) => <li key={i}>{c.name}</li>)}
         </div>
       )} />
-      <Country/>
+       <Country/>
       </div>
-      
+     
     );
   }
 }
@@ -136,11 +104,11 @@ class Country extends Component {
       areaCode:"",
       description:""
     }
-    
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleChange(event, value) {
     let newState = {}
     newState[value] =  event.target.value
@@ -148,25 +116,25 @@ class Country extends Component {
     this.setState(newState);
     
   }
-  
+
   handleSubmit(event) {
     api.service.post('/countries',{})
     .then(
       (value) => {
         console.log(value)
         return (value)
-        
+
       }
-      
+
     )
     .catch()
-    
+  
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
-  
+
   render() {
-    
+  
     return (
       <form onSubmit={this.handleSubmit}>
       <label>
