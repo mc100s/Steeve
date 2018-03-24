@@ -46,10 +46,11 @@ class AddNote extends Component {
       currentLabel : '',
       currentItemsLabel : ['General'],
       sfdcItemsLabel :  [],
-      stateChangedCount : 0
+      didItChanged : false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    setInterval(this.autoSave.bind(this), 3000);
   }
   
   handleChange(label) {
@@ -70,8 +71,21 @@ class AddNote extends Component {
     }) 
   }
   
+  autoSave(){
+    console.log('setintervall')
+    if (this.state.didItChanged) {
+      api.updateNote(this.props.match.params.id,this.state.currentNote)
+      console.log('saved')
+      this.setState({
+        didItChanged: false
+      })
+    }
+  }
+  
   handleText(e){
-    console.log('handle texte 1');
+    this.setState({
+      didItChanged: true
+    }) 
     
     let newText = e.target.value;
     this.setState({
@@ -92,12 +106,18 @@ class AddNote extends Component {
     
   }
   
-  autoSave() {
-    let changed = false;
-    
+  displayLoader() {
+    if(this.state.didItChanged) {
+      return(
+        <div class="span">
+        <div class="typing_loader"></div>
+      </div>
+      )
+    } else {
+      return (<h4>saved</h4>)
+    }
   }
-  
-  
+
   handleSubmit(e) {
     e.preventDefault();
     console.log('submitted');
@@ -120,6 +140,7 @@ class AddNote extends Component {
       )
     }
     </h3>
+    {this.displayLoader()}
     <div>
     <form onSubmit={this.handleSubmit}>
     <textarea  value={this.state.value} onChange={this.handleText.bind(this)}></textarea>
