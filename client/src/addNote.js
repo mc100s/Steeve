@@ -44,37 +44,67 @@ class AddNote extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    let kikou = 'var dns le constructor'
   }
   
   handleChange(label) {
-    console.log(label)
+    console.log('handle change click');
+    
+    let p = 0;
+    let newTextInputs = this.state.textInputs.slice();
+    // console.log(label)
+    
     this.setState({
       currentLabel : label
     })
+    // this.state.value = 'test'
+    for (let i = 0; i <this.state.textInputs.length; i++) {
+      if (newTextInputs[i].label === label) {
+        p = i
+      }
+    }
+    console.log("DEBUG p", p, this.state.textInputs[p], !this.state.textInputs[p].text === '');
+    
+    this.setState({
+      value : this.state.textInputs[p].text
+    }) 
+    // if (!this.state.textInputs[p].text === '') { this.setState({
+    //   value : this.state.textInputs[p].text}) 
+    // }
+    // else {
+    //   this.setState({
+    //     value : ''
+    //   })
+    // }
   }
-
+  
+  //state = valuer de l'input
+  
+  
   handleText(e){
+    console.log('handle texte 1');
+    
     let newText = e.target.value;
+    this.setState({
+      value: newText
+    });
     let p = 0;
     let newTextInputs = this.state.textInputs.slice();
-
-
     for (let i = 0; i <this.state.textInputs.length; i++) {
       if (newTextInputs[i].label === this.state.currentLabel) {
         p = i
       }
     }
-    console.log("p", p);
-    
-
-    newTextInputs[p].text = newText
-    
+    // console.log("p", p);
+    // let newText2 = newText.concat(' ');
+    newTextInputs[p].text =  newText
     this.setState({
       textInputs: newTextInputs
     })
-
+    
+    
   }
-
+  
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
@@ -83,32 +113,32 @@ class AddNote extends Component {
   render() {                
     return (
       <div className="App">
-      <h3>
-      {this.state.textInputs.map(
-        (label) => {
-          return (
-            <div className="">
-            <button
-            className=""
-            onClick={() =>{this.handleChange(label.label)}}>{label.label}</button>
-            </div>
-          )
-        }
-      )
+        <h3>
+        {this.state.textInputs.map(
+          (label) => {
+            return (
+              <div className="">
+              <button
+              className=""
+              onClick={() =>{this.handleChange(label.label)}}>{label.label}</button>
+              </div>
+            )
+          }
+        )
       }
       </h3>
       <div>
       <form onSubmit={this.handleSubmit}>
-        <label>
-          
-          <input type="text" value={this.state.value} onChange={this.handleText.bind(this)} />
-        </label>
-        <input type="submit" value="Save Steve!" />
+ 
+      
+      <textarea  value={this.state.value} onChange={this.handleText.bind(this)}></textarea>
+  
+      <input type="submit" value="Save Steve!" />
       </form>
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 
