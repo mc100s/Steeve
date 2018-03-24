@@ -117,11 +117,9 @@ class AddNote extends Component {
         {this.state.textInputs.map(
           (label) => {
             return (
-              <div className="">
               <button
-              className=""
+              className={this.state.currentLabel === label.label ? "btn btn-info button-label" :' btn btn-outline-info button-label'}
               onClick={() =>{this.handleChange(label.label)}}>{label.label}</button>
-              </div>
             )
           }
         )

@@ -46,10 +46,10 @@ class Header extends Component {
   
   render() {                
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="">
+        <header className="">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Steve</h1>
+          <h1 className="">Welcome to Steve</h1>
           <Link to="/home">Home</Link>
           <Link to="/myNotes"> My Notes</Link> 
           <Link to="/myBusiness"> My Business</Link>
