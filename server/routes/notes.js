@@ -66,7 +66,7 @@ router.post('/:id/addNote', passport.authenticate("jwt", config.jwtSession), (re
 
 
 router.put('/:id', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-  // console.log(req.body)
+  console.log(req.body)
   Notes.update({_id:req.params.id}, {$set : {...req.body}}, function callback (err, numAffected) {
   if(err) return res.status(500).send(err)
   res.json({Notes})

@@ -8,67 +8,68 @@ class AddNote extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      currentNote : {
+        name : 'New Note',
+        persoItemsLabel : [],
+        textInputs: [
+          {
+            label : 'Metrics',
+            text : "" 
+          },
+          {
+            label : 'Economic Buyer',
+            text : "" 
+          },
+          {
+            label : 'Decision Criteria',
+            text : "" 
+          },
+          {
+            label : 'Decision Process',
+            text : "" 
+          },
+          {
+            label : 'Identify Pain',
+            text : "" 
+          },
+          {
+            label : 'Champion',
+            text : "" 
+          },
+          {
+            label : 'General',
+            text : "" 
+          }         
+        ],
+        todolists : []
+      },
       currentLabel : '',
-      name : 'New Note',
       currentItemsLabel : ['General'],
       sfdcItemsLabel :  [],
-      persoItemsLabel : [],
-      textInputs: [
-        {
-          label : 'Metrics',
-          text : "" 
-        },
-        {
-          label : 'Economic Buyer',
-          text : "" 
-        },
-        {
-          label : 'Decision Criteria',
-          text : "" 
-        },
-        {
-          label : 'Decisition Process',
-          text : "" 
-        },
-        {
-          label : 'Identify Pain',
-          text : "" 
-        },
-        {
-          label : 'Champion',
-          text : "" 
-        }         
-      ],
-      todolists : []
+      stateChangedCount : 0
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    let kikou = 'var dns le constructor'
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleChange(label) {
-    console.log('handle change click');
-    
     let p = 0;
-    let newTextInputs = this.state.textInputs.slice();
-    // console.log(label)
+    let newTextInputs = this.state.currentNote.textInputs.slice();
     
     this.setState({
       currentLabel : label
     })
-    // this.state.value = 'test'
-    for (let i = 0; i <this.state.textInputs.length; i++) {
+    for (let i = 0; i <this.state.currentNote.textInputs.length; i++) {
       if (newTextInputs[i].label === label) {
         p = i
       }
     }
-    console.log("DEBUG p", p, this.state.textInputs[p], !this.state.textInputs[p].text === '');
     
     this.setState({
-      value : this.state.textInputs[p].text
+      value : this.state.currentNote.textInputs[p].text
     }) 
   }
-
+  
   handleText(e){
     console.log('handle texte 1');
     
@@ -77,8 +78,8 @@ class AddNote extends Component {
       value: newText
     });
     let p = 0;
-    let newTextInputs = this.state.textInputs.slice();
-    for (let i = 0; i <this.state.textInputs.length; i++) {
+    let newTextInputs = this.state.currentNote.textInputs.slice();
+    for (let i = 0; i <this.state.currentNote.textInputs.length; i++) {
       if (newTextInputs[i].label === this.state.currentLabel) {
         p = i
       }
@@ -93,40 +94,38 @@ class AddNote extends Component {
   
   autoSave() {
     let changed = false;
-
+    
   }
-
-
-  handleClick(e) {
+  
+  
+  handleSubmit(e) {
     e.preventDefault();
-    console.log('clicked');
-    api.createNote(this.state)
-    .then(console.log('note created'))
-    
-    
+    console.log('submitted');
+    api.updateNote(this.props.match.params.id,this.state.currentNote)
+    .then(this.props.history.push('/pushtoSfdc'))
   }
   
   render() {                
     return (
       <div className="App">
-        <h3>
-        {this.state.textInputs.map(
-          (label) => {
-            return (
-              <button
-              className={this.state.currentLabel === label.label ? "btn btn-info button-label" :' btn btn-outline-info button-label'}
-              onClick={() =>{this.handleChange(label.label)}}>{label.label}</button>
-            )
-          }
-        )
-      }
-      </h3>
-      <div>
-      <form onSubmit={this.handleSubmit}>
-      <textarea  value={this.state.value} onChange={this.handleText.bind(this)}></textarea>
-      <input type="submit" value="Save Steve!" onclick={this.handleClick}/>
-      </form>
-      </div>
+      <h3>
+      {this.state.currentNote.textInputs.map(
+        (label) => {
+          return (
+            <button
+            className={this.state.currentLabel === label.label ? "btn btn-info button-label" :' btn btn-outline-info button-label'}
+            onClick={() =>{this.handleChange(label.label)}}>{label.label}</button>
+          )
+        }
+      )
+    }
+    </h3>
+    <div>
+    <form onSubmit={this.handleSubmit}>
+    <textarea  value={this.state.value} onChange={this.handleText.bind(this)}></textarea>
+    <input type="submit" value="Save Steve!" onclick={this.handleClick}/>
+    </form>
+    </div>
     </div>
   );
 }

@@ -22,11 +22,20 @@ export default {
   createNote() {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
     return service
-    .post('notes/123/addNote')
+    .post('notes/5aaf69afe063242f68277ee6/addNote')
     .then(res => res.data)
-    // .then(console.log(res.data))
+    .catch(errHandler)
+  },
+  updateNote(id,data) {
+    console.log("update asked")
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
+    return service
+    .put('notes/'+id,data)
+    .then(res => res.data)
+    // console.log(res)
     .catch(errHandler)
   }
+  
   
 };
 

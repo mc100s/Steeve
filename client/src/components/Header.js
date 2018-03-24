@@ -6,25 +6,14 @@ import logo from '../steve.png';
 import ReactDOM from 'react-dom';
 
 
-// import MyNotes from './myNotes';
 import Home from './Home';
 import MyBusiness from './MyBusiness';
 import MySettings from './MySettings';
 import Steve from './Steve';
-// import NoteDetail from './NoteDetail';
+
 import Note from './NoteDetail';
 import Notes from './Notes';
 import AddNote from './AddNote';
-
-// import Secret from './Settings';
-
-// import Login from './Login';
-// import Signup from './Signup';
-// import api from '../api';
-// import logo from '../logo.svg';
-
-
-//import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
 
 
 
@@ -35,13 +24,6 @@ class Header extends Component {
       x: []
     }
   }
-  // componentDidMount() {
-  //   api.getNotes()
-  //   .then((resp) => {
-  //     console.log('apres', resp)
-  //   })
-  //   }
- 
   
   render() {                
     return (
@@ -62,8 +44,7 @@ class Header extends Component {
           <Route path="/myBusiness" component={MyBusiness} />
           <Route path="/mySettings" component={MySettings} />
           <Route path="/steve" component={Steve} />
-          <Route path="/addNote" component={AddNote} />
-          {/* <Route path={`/note/${this.props.note.name}`} component={noteDetail} /> */}
+          <Route path="/notes/:id" component={AddNote} />
         </Switch>        
       </div>
     );

@@ -13,8 +13,13 @@ class NoteCard extends Component {
   };
   
   goodData(notes) {
+    // this.setState({
+    //   notes : notes
+    // })
+    console.log('this state notes',this.state.notes)
     let dataOk = []
     for (let i = 0; i<notes.textInputs.length; i++) {
+      console.log('debug',notes)
       dataOk.push((<div><div>{notes.textInputs[i].label}:{notes.textInputs[i].text}</div></div>))
     }
     return dataOk
@@ -40,11 +45,10 @@ class Notes extends Component {
   componentDidMount() {
     api.getNotes()
     .then((resp) => {
-      console.log('apres', resp)
       this.setState({
         notes: resp
       })
-      
+      // console.log(resp)
     })
   }
   
@@ -53,8 +57,15 @@ class Notes extends Component {
     return (
       <div className="App">
       <br/>
-      {/* <AddNote/> */}
-      <Link to="/addNote">Add Note</Link>
+      
+      <button onClick={() => {
+        api.createNote()
+        .then((resp) => {
+          this.props.history.push('/notes/'+resp._id) // fait un redurect vers une nouvelle route
+        })
+      }}
+      >Add Note</button>
+      
       <div>{this.state.notes.map((note)=>{
         return (<NoteCard note={note}></NoteCard>)
       })}
