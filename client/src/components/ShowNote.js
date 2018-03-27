@@ -3,6 +3,33 @@ import { Route, Link, Switch } from 'react-router-dom';
 import api from '../api';
 import AddNote from './AddNote';
 
+class ShowNote extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      notes: [],
+      currentCompanyId : this.props.route._id
+    } 
+  }
+  componentDidMount() {
+    api.getNotes()
+    .then((resp) => {
+      this.setState({
+        notes: resp
+      })
+      // console.log(resp)
+    })
+  }
+
+
+
+
+
+}
+
+
+
+
 
 class NoteCard extends Component {
   constructor(props) {
@@ -94,7 +121,7 @@ class Account extends Component {
   render() {                
     return (
       <div className="App">
-      {/* <h3>{this.state.accounts.map((accounts) =>{
+      <h3>{this.state.accounts.map((accounts) =>{
         return (
           <div>
             <h2><Link to={`${accounts._id}`}>{accounts.company}</Link></h2>
@@ -105,8 +132,7 @@ class Account extends Component {
         )
       })
       }
-      </h3> */}
-
+      </h3>
       
       </div>
   )
@@ -135,7 +161,7 @@ class Account extends Component {
 // this.props.route.something
 
 
-export default Notes;
+export default ShowNote;
 
 
 

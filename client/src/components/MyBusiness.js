@@ -5,19 +5,6 @@ import {MyNotes, AddNote} from './MyNotes';
 import Notes from './Notes';
 import ReactDOM from 'react-dom';
 
-
-// import Secret from './Settings';
-// import Secret from './Steeve';
-// import Login from './Login';
-// import Signup from './Signup';
-// import api from '../api';
-// import logo from '../logo.svg';
-
-
-//import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
-
-
-
 class MyBusiness extends Component {
   constructor(props) {
     super(props)
@@ -31,8 +18,6 @@ class MyBusiness extends Component {
   //     console.log('apres', resp)
   //   })
   //   }
- 
-  
   render() {                
     return (
      <div>
@@ -42,7 +27,6 @@ class MyBusiness extends Component {
     );
   }
 }
-
 
 
 export default MyBusiness;

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Opportunity = require('../models/opportunity');
-const Note = require('../models/note');
+const Notes = require('../models/note');
 const passport = require('passport');
 const config = require('../config');
 
@@ -20,8 +20,8 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage });
 
 //get all opps/user
-router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  Opportunity.find({owner:req.user._id})  
+router.get('/:id/user', (req, res, next) => {
+  Opps.find({owner:req.params.id})  
   .then(opps => {
     res.json(opps)
   })

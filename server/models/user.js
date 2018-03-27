@@ -9,7 +9,7 @@ const todoList = require('./todoList');
 
 const userSchema = new Schema({
   firstName: {type:String},
-  lastName: {type:String, required: [true, "A lastName is required"]},
+  lastName: {type:String, required: [false, "A lastName is required"]},
   pictureUrl: String,
   // usertype : XXXX,
   email:  {type:String, required: [true, " let's keep in touch, shall we ?"]},

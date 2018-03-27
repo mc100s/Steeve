@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       x: []
     }
-    // api.loadUser()
+    api.loadUser()
   }
   // componentDidMount() {
   //   api.getNotes()

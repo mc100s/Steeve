@@ -14,6 +14,9 @@ import Steve from './Steve';
 import Note from './NoteDetail';
 import Notes from './Notes';
 import AddNote from './AddNote';
+import Signup from './Signup';
+import Login from './Login';
+import MyBusiness2 from './MyBusiness2';
 
 
 
@@ -35,16 +38,22 @@ class Header extends Component {
           <Link to="/myNotes"> My Notes</Link> 
           <Link to="/myBusiness"> My Business</Link>
           <Link to="/mySettings"> Settings</Link>  
-          <Link to="/steve"> Steve</Link>  
+          <Link to="/steve"> Steve</Link>
+          <Link to="/myBusiness2"> My Business 2</Link> 
+          <Link to="/login"> Login</Link> 
+          <Link to="/signup"> Signup2</Link> 
           
         </header>
         <Switch>
           <Route path="/home" component={Home} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
           <Route path="/myNotes" component={Notes} />
           <Route path="/myBusiness" component={MyBusiness} />
           <Route path="/mySettings" component={MySettings} />
           <Route path="/steve" component={Steve} />
           <Route path="/notes/:id" component={AddNote} />
+          <Route path="/myBusiness2" component={MyBusiness2} />
         </Switch>        
       </div>
     );

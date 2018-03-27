@@ -28,8 +28,16 @@ const parser = multer({ storage });
 router.get('/opportunities', (req, res, next) => {
   Opps.find({}).populate('owner').populate('notes')    
     .then(opps => {
-      console.log(opps)
+      // console.log(opps)
       res.json(opps)
+    })
+});
+
+router.get('/:id/accounts', (req, res, next) => {
+  User.findById(req.params.id).populate('myAccountsList')   
+    .then(user => {
+      console.log('ok!',user.myAccountsList)
+      res.json(user.myAccountsList)
     })
 });
 

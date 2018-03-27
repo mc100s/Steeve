@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import api from '../api';
+import Login from './Login';
+import Signup from './Signup';
 import ReactDOM from 'react-dom';
 
 
@@ -35,6 +37,8 @@ class Home extends Component {
     return (
      <div>
        <p>This is Home</p>
+       <Login/>
+       <Signup/>
       </div>
     );
   }

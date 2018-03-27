@@ -9,7 +9,6 @@ const todoList = require('./todoList');
 const OppSchema = new Schema({
   SFDCID: String,
   oppName : {type:String, required: [false, "What's my name dear?"]},
-
   oppAmount:Number,
   oppClosingDate : Date,
   // oppTeam : {type : mongoose.Schema.Types.ObjectId, ref: 'User' },
