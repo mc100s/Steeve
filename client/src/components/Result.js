@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import api from '../api';
 import AddNote from './AddNote';
+// import Search from 'react-search-box';
 
 
 
 
-class Search extends Component {
+class Result extends Component {
   constructor(props) {
     super(props)
     this.state = {
       notes: [],
       accounts : [],
-      opps:[]
+      opps:[],
+      searchInput :''
     } 
   };
 
@@ -41,11 +43,19 @@ class Search extends Component {
 
   }
   
+  mergeDatas() {
 
+  }
   render() {                
     return (
       <div> 
-      {/* {setTimeOut(console.log(notes,1500))} */}
+        <form>
+          <label>
+          
+            <input type="text" name="name" />
+          </label>
+            <input type="submit" value="Search" />
+        </form>
   
       </div>
     )
@@ -53,4 +63,4 @@ class Search extends Component {
 }
 
 
-  export default Search;
+  export default Result;

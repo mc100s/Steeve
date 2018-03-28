@@ -3,9 +3,6 @@ import { Route, Link, Switch } from 'react-router-dom';
 import api from '../api';
 import AddNote from './AddNote';
 
-
-
-
 class LastAccount extends Component {
   constructor(props) {
     super(props)
@@ -28,17 +25,13 @@ class LastAccount extends Component {
   render() {                
     return (
       <div>
-
-        {console.log(this.state.accounts && this.state.accounts[0] && this.state.accounts[0].alias)}
         <span>{this.state.accounts.map((account)=>
               {return (account.alias)})
               }
         </span>
-  
       </div>
     )
   }
 }
-
 
   export default LastAccount;
