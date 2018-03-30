@@ -10,24 +10,38 @@ class ListNotes extends Component {
       selectedOpp:'',
       selectedNote:'',
       selectedLabel:'',
-      value:''
+      datas:''
     } 
-    // this.handleInputChange = this.handleInputChange.bind(this)
+    this.test = this.test.bind(this)
   };
-
-  // getFilteredNotes(oppId) {
-
+  // componentDidMount() {
+  //   mergeName = () => {
+  //     let toShow= [];
+  //     for (let i = 0; i<)
+  //   }
   // }
+ test() {this.setState({
+   datas:this.props.notes
+    })
+    
+  }
 
    render() {                
     return (
       <div>
       {/* {
-        this.props._idNote.map((note)=> {
-          return (<div>{ note}</div>)
-        })
-      } */}
-      {/* {console.log(this.props._idNote)} */}
+        this.props.notes.map((note)=> {
+          return (
+          <h3>{note.name}</h3>,
+          <h5>{note.label}</h5>,
+          <h5>{note.text}</h5>
+          )
+        }) 
+        } */}
+
+      {/* {(this.test.length>0 && this.test) {console.log()}}
+      {this.props.notes.map((note)=>{<div>{note}</div>})} */}
+      {/* {console.log('name', this.props.notes[0])} */}
         
       </div>
    )}

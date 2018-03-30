@@ -17,7 +17,7 @@ class MyBusiness3 extends Component {
     this.state = {
       opps : [],
       selectedOpp:'',
-      selectedNote:'',
+      notes:'',
       selectedLabel:'',
       value:''
     } 
@@ -41,20 +41,21 @@ class MyBusiness3 extends Component {
     })
   }
 
-  getFilteredNote(oppId) {
+  getFilteredNote=(oppId)=> {
     let notesData=[];
       for (let i = 0; i < this.state.opps.length; i++) {
         if (oppId === this.state.opps[i]._id) {
-          console.log(this.state.opps[i].notes.textInputs)
           for (let j = 0; j < this.state.opps[i].notes.length; j++) {
-          notesData.push(this.state.opps[i].notes[j].textInputs)
-          notesData.push(this.state.opps[i].notes[j].name)
+            this.state.opps[i].notes[j].name = this.state.opps[i].notes[j].name
+            notesData[j].name =  this.state.opps[i].notes[j].name
+            notesData.push(this.state.opps[i].notes[j].textInputs)
+            
           }
         }
       }
-      // console.log('debug',notesData)
+      console.log('debug',notesData)
+      this.setState({notes:notesData})
       return(notesData)
-      
   }
 
    render() {                
@@ -65,7 +66,7 @@ class MyBusiness3 extends Component {
         </div>
 
         <div className='SecondtBar'>
-        <ListNotes _idNote={this.state.selectedOpp}/>
+        <ListNotes notes={this.state.notes}/>
         </div>
         <div className='ThirdBar'>
         </div>
