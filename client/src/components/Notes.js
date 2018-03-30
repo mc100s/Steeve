@@ -56,7 +56,7 @@ class Notes extends Component {
       <button onClick={() => {
         api.createNote()
         .then((resp) => {
-          this.props.history.push('/notes/'+resp._id) // fait un redurect vers une nouvelle route
+          this.props.history.push('/notes/'+resp._id+'/edit') // fait un redurect vers une nouvelle route
         })
       }}
       >Add Note</button>

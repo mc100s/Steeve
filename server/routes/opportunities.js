@@ -22,7 +22,7 @@ const parser = multer({ storage });
 
 //get all opps/user
 router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  Opportunity.find({owner:req.user._id})  
+  Opportunity.find({owner:req.user._id}).populate('notes')  
   .then(opps => {
     res.json(opps)
   })

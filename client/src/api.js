@@ -19,6 +19,14 @@ export default {
     .then(res => res.data)
     .catch(errHandler);
   },
+  getOneNote(note) {
+    // axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
+    return service
+    .get('notes/'+ note) 
+    .then(res => res.data) 
+    // console.log(res)
+    .catch(errHandler);
+  },
   getOpps() {
     // axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
     return service
@@ -29,14 +37,16 @@ export default {
   getAccounts() {
     // axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
     return service
-    .get('users/5aaf69afe063242f68277ee3/accounts')
+    .get('users/accounts')
     .then(res => res.data)
     .catch(errHandler);
   },
-  createNote() {
+  createNote(opportunityId) {
     // axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
     return service
-    .post('notes/5aaf69afe063242f68277ee6/addNote')
+    .post('notes', {
+      opportunityId
+    })
     .then(res => res.data)
     .catch(errHandler)
   },
@@ -86,7 +96,7 @@ export default {
   },
   
   loadUser() {
-    console.log("loadUser");
+    // console.log("loadUser");
     
     const userData = localStorage.getItem('user');
     if (!userData) return false;

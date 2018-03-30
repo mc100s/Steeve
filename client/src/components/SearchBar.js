@@ -9,12 +9,7 @@ class SearchBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      notes: [],
-      accounts : [],
-      opps:[],
-      didItChanged: false,
-      searchInput :'',
-      value:''
+     
     } 
      this.handleClick = this.handleClick.bind(this);
   };
@@ -30,6 +25,7 @@ class SearchBar extends Component {
           </label>
             <input value={this.state.value} onChange={(event)=> {this.props.onChangeJulien(event.target.value)}} type="submit" value="Search" onclick={this.handleClick}/>
         </form>
+
       </div>
     )
   }

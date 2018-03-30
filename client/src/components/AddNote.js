@@ -47,6 +47,10 @@ class AddNote extends Component {
       currentItemsLabel : ['General'],
       sfdcItemsLabel :  [],
       didItChanged : false,
+      didTitleChanged : false,
+      title: '',
+      currentInput:''
+    
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -88,8 +92,9 @@ class AddNote extends Component {
     }) 
     
     let newText = e.target.value;
+    console.log(newText)
     this.setState({
-      value: newText
+      currentInput: newText
     });
     let p = 0;
     let newTextInputs = this.state.currentNote.textInputs.slice();
@@ -102,15 +107,24 @@ class AddNote extends Component {
     this.setState({
       textInputs: newTextInputs
     })
-    
-    
   }
+
+  // handleTitle(e){
+  //   this.setState({
+  //     didItChanged: true
+  //   }) 
+    
+  //   let newTitle = e.target.value;
+  //   this.setState({
+  //     title: newTitle
+  //   });
+  // }
   
   displayLoader() {
     if(this.state.didItChanged) {
       return(
-        <div class="span">
-        <div class="typing_loader"></div>
+        <div className="span">
+        <div className="typing_loader"></div>
       </div>
       )
     } else {
@@ -142,9 +156,16 @@ class AddNote extends Component {
     </h3>
     {this.displayLoader()}
     <div>
+      {/* <form >
+        <textarea  placeholder = 'My Title' value={this.state.title} onChange={this.handleTitle.bind(this)}></textarea>
+        
+      
+    </form> */}
+    </div>
+    <div>
     <form onSubmit={this.handleSubmit}>
     <textarea  value={this.state.value} onChange={this.handleText.bind(this)}></textarea>
-    <input type="submit" value="Save Steve!" onclick={this.handleClick}/>
+    <input type="submit" value="Save Steve!" onClick={this.handleClick}/>
     </form>
     </div>
     </div>

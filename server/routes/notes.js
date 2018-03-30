@@ -38,7 +38,7 @@ router.get('/:id/user/accounts', passport.authenticate("jwt", config.jwtSession)
   })
 });
 
-//  Opps.find({}).populate('owner').populate('notes')  
+
 
 //-----GET ALL NOTES----
 router.get('/', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
@@ -49,8 +49,18 @@ router.get('/', passport.authenticate("jwt", config.jwtSession),(req, res, next)
   })
 });
 
+//-----GET One NOTES----
+router.get('/:id', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
+  Notes.findById(req.params.id)  
+  .then(notes => {
+    console.log(notes)
+    res.json(notes)
+  })
+});
+
+
 //----CREATE A NEW NOTE----
-router.post('/:id/addNote', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+router.post('/:opportunityId/addNote', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   // console.log(req.params)
   Opportunity.findById(req.params.id)
   .then((resp) => {  

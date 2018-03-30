@@ -16,7 +16,8 @@ import Notes from './Notes';
 import AddNote from './AddNote';
 import Signup from './Signup';
 import Login from './Login';
-import MyBusiness2 from './MyBusiness2';
+import MyBusiness3 from './MyBusiness3';
+import ViewNote from './ViewNote';
 
 
 
@@ -35,13 +36,15 @@ class Header extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="">Welcome to Steve</h1>
           <Link to="/home">Home</Link>
-          <Link to="/myNotes"> My Notes</Link> 
-          <Link to="/myBusiness"> My Business</Link>
-          <Link to="/mySettings"> Settings</Link>  
-          <Link to="/steve"> Steve</Link>
-          <Link to="/myBusiness2"> My Business 2</Link> 
+          <Link to="/myBusiness"> Mybusiness</Link> 
+          {/* <Link to="/myNotes"> My Notes</Link> 
+          <Link to="/myBusiness"> My Business</Link> */}
+          {/* <Link to="/mySettings"> Settings</Link>  
+          <Link to="/steve"> Steve</Link> */}
+          {/* <Link to="/myBusiness2"> My Business 2</Link>  */}
           <Link to="/login"> Login</Link> 
-          <Link to="/signup"> Signup2</Link> 
+          <Link to="/signup"> Signup</Link> 
+
           
         </header>
         <Switch>
@@ -49,11 +52,14 @@ class Header extends Component {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/myNotes" component={Notes} />
-          <Route path="/myBusiness" component={MyBusiness} />
+          {/* <Route path="/myBusiness" component={MyBusiness} /> */}
           <Route path="/mySettings" component={MySettings} />
-          <Route path="/steve" component={Steve} />
-          <Route path="/notes/:id" component={AddNote} />
-          <Route path="/myBusiness2" component={MyBusiness2} />
+          {/* <Route path="/steve" component={Steve} /> */}
+          <Route path="/notes/:id/edit" component={AddNote} />
+          <Route path="/notes/:id" component={ViewNote} />
+          {/* <Route path="/myBusiness2" component={MyBusiness2} /> */}
+          <Route path="/myBusiness" component={MyBusiness3} />
+          
         </Switch>        
       </div>
     );

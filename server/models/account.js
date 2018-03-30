@@ -11,11 +11,12 @@ const todoList = require('./todoList');
 const accountSchema = new Schema({
     SFDCID: String,
     alias : String,
+    name: String,
+    logo: String,
+    links : [String],
     _opportunities : [{type : mongoose.Schema.Types.ObjectId, ref: 'Opportunity' }],
     totalOppAmount: Number,
-    // oppTeam : [{type : mongoose.Schema.Types.ObjectId, ref: 'User' }],
     oppLastModificationDate : Date,
-    // Add here everything needed from SFDC
     customerContacts : [{
         name : String,
         lastName : String,
@@ -24,10 +25,7 @@ const accountSchema = new Schema({
         phoneNumber : String,
         position : String,
      }],
-    
-    
 });
-
 
 
 module.exports = mongoose.model('Account', accountSchema);
