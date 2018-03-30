@@ -21,14 +21,17 @@ class MyBusiness3 extends Component {
       selectedLabel:'',
       value:''
     } 
-    // this.handleInputChange = this.handleInputChange.bind(this)
     this.selectedOpp = this.selectedOpp.bind(this)
+    this.getFilteredNote = this.getFilteredNote.bind(this)
   };
+
   selectedOpp = (event) =>{
     this.setState({selectedOpp:event})
-    console.log(event)
+    console.log('selectedopp',event)
+    this.getFilteredNote(event)
   }
-    componentDidMount() {
+
+  componentDidMount() {
     api.getOpps()
     .then((resp) => {
       this.setState({
@@ -36,23 +39,34 @@ class MyBusiness3 extends Component {
       })
       console.log('Opps',resp)
     })
-   }
+  }
+
+  getFilteredNote(oppId) {
+    let notesData=[];
+      for (let i = 0; i < this.state.opps.length; i++) {
+        if (oppId === this.state.opps[i]._id) {
+          console.log(this.state.opps[i].notes.textInputs)
+          for (let j = 0; j < this.state.opps[i].notes.length; j++) {
+          notesData.push(this.state.opps[i].notes[j].textInputs)
+          notesData.push(this.state.opps[i].notes[j].name)
+          }
+        }
+      }
+      // console.log('debug',notesData)
+      return(notesData)
+      
+  }
+
    render() {                
     return (
       <div>
-         <div>
-           
-           </div>
-
-
-
         <div>
           <ListOpportunities onClick={this.selectedOpp} opps={this.state.opps}/>
         </div>
 
         <div className='SecondtBar'>
+        <ListNotes _idNote={this.state.selectedOpp}/>
         </div>
-
         <div className='ThirdBar'>
         </div>
 

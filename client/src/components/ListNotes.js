@@ -15,20 +15,20 @@ class ListNotes extends Component {
     // this.handleInputChange = this.handleInputChange.bind(this)
   };
 
+  // getFilteredNotes(oppId) {
+
+  // }
 
    render() {                
     return (
       <div>
-
-        <div className='FirstBar'>
-        {this.props.opps.map((opp) => {
-          return (
-            <Link to={'/note'+opp._id} >{opp.oppName}</Link>
-           )
-        })}
-        </div>
-
-
+      {/* {
+        this.props._idNote.map((note)=> {
+          return (<div>{ note}</div>)
+        })
+      } */}
+      {/* {console.log(this.props._idNote)} */}
+        
       </div>
    )}
 
