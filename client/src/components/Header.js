@@ -48,7 +48,41 @@ class Header extends Component {
           <Link to="/login"> Login</Link> 
           <Link to="/signup"> Signup</Link> 
 
-          
+          {/* <nav class="navbar navbar-expand-lg bg-rose"> */}
+    {/* <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/presentation.html">Brand</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a href="#pablo" class="nav-link">link</a>
+                </li>
+            </ul>
+
+            <form class="form-inline ml-auto">
+                <div class="form-group has-white">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini btn-round">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav> */}
+
+
+
+
+
+
         </header>
         <Switch>
           <Route path="/home" component={Home} />

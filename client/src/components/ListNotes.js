@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import api from '../api';
 
- let id= '5abd40ef53064b4da4cb1872';
-
 class ListNotes extends Component {
   constructor(props) {
     super(props)
@@ -22,7 +20,6 @@ class ListNotes extends Component {
     //     })
   }
 
-
    render() {
     this.opportunityId = this.props.match.params.opportunityId;
     for (let i = 0; i < this.props.opps.length; i++) {
@@ -31,8 +28,14 @@ class ListNotes extends Component {
       }
     }                
     return (
-      <div>
-
+      <div> 
+        <button onClick={() => {
+          api.createNote()
+          .then((resp) => {
+            this.props.history.push('/my-business/:opportunityId/notes/new/:'+resp._id) // fait un redurect vers une nouvelle route
+        })
+      }}
+      >Add Note</button>
 
         {this.selectedOpp && this.selectedOpp.notes.map((note)=> {
             return (

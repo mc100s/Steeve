@@ -9,7 +9,7 @@ import SearchBar from './SearchBar';
 import ListOpportunities from './ListOpportunities';
 import ListNotes from './ListNotes';
 import ListLabels from './ListLabels';
-import EditSubnote from './EditSubnote';
+import EditNubnote from './EditSubNote';
 
 class MyBusiness3 extends Component {
   constructor(props) {
@@ -48,17 +48,9 @@ class MyBusiness3 extends Component {
       for (let i = 0; i < this.state.opps.length; i++) {
         if (oppId === this.state.opps[i]._id) {
           for (let j = 0; j < this.state.opps[i].notes.length; j++) {
-            console.log('export array',this.state.opps[i].notes[j])
+            // console.log('export array',this.state.opps[i].notes[j])
             noteTitle.push({name:this.state.opps[i].notes[j].name,id:this.state.opps[i].notes[j]._id})
-              console.log('export des titres',noteTitle)
-              // temp.filter((note)=> {
-              //   <div>{note.name}s</div>
-              // })
-
-            // this.state.opps[i].notes[j].name = this.state.opps[i].notes[j].name
-            // notesData[j].name =  this.state.opps[i].notes[j].name
-            // notesData.push(this.state.opps[i].notes[j].textInputs)
-            
+              // console.log('export des titres',noteTitle)
           }
         }
       }

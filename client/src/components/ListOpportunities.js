@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
+import Search from './Search';
 
 
 class ListOpportunities extends Component {
@@ -18,11 +19,12 @@ class ListOpportunities extends Component {
     return (
       <div>
         <div className='FirstBar'>
+        <Search/>
           <ul> 
             {this.props.opps.map((opp) => {
               return (
-                <li  
-                ><Link key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link></li>
+                <div  
+                ><Link className='btn btn-primary' key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link></div>
               )
             })}
           </ul>
