@@ -5,6 +5,9 @@ import ListOpportunities from './ListOpportunities';
 import ListNotes from './ListNotes';
 import EditSubNote from './EditSubNote';
 
+let noteChangedId =''
+let oppChangedId = ''
+
 class Dashboard extends Component {
   constructor(props) {
     super(props)
@@ -12,10 +15,30 @@ class Dashboard extends Component {
       opps: [],
       notes:[],
       selectedOpp:'',
+      didItChanged : false,
       noteTitle:''
     }
-    // this.selectedOpp = this.selectedOpp.bind(this)
+    setInterval(this.autoSave.bind(this), 3000);
   }
+
+  autoSave(){
+    let noteId = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/);
+    console
+    console.log('setintervall')
+    if (this.state.didItChanged) {
+      for (let i = 0; i< this.state.opps.length;i++)
+      {
+        console.log('KIKOUUU',this.state.opps[i]._id, oppChangedId)
+        if(this.state.opps[i]._id = oppChangedId )
+        api.updateNote(noteChangedId,this.state.opps[i].notes)
+        console.log('saved')
+        this.setState({
+          didItChanged: false
+        })
+      }
+    }
+  }
+
   componentDidMount() {
     api.getOpps()
       .then((resp) => {
@@ -50,30 +73,33 @@ class Dashboard extends Component {
   }
 
   handleChange(e, opportunityId, noteId, label) {
-    console.log("DEUBG YOLO");
-    console.log("DEUBG e.target.value", e.target.value);
-    console.log("DEUBG opportunityId", opportunityId);
-    console.log("DEUBG noteId", noteId);
-    console.log("DEUBG label", label);
-    console.log("DEUBG this.state.opps", this.state.opps);
-    console.log("DEUBG this.getSelectedOpp()", this.getSelectedOpp());
-    console.log("DEUBG this.props.match.params.opportunityId", this.props.match.params.opportunityId);
-    console.log("DEUBG this.props.location.pathname", this.props.location.pathname);
-    console.log("DEUBG this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)", this.props.location.pathname.match(/\/my-business\/(.*)\/notes/));
-    // "/my-business/5abd40ef53064b4da4cb1874/notes/5abd40f053064b4da4cb1889".match(/\/my-business\/(.*)\/notes/)
+    // console.log("DEUBG YOLO");
+    // console.log("DEUBG e.target.value", e.target.value);
+    // console.log("DEUBG opportunityId", opportunityId);
+    // console.log("DEUBG noteId", noteId);
+    // console.log("DEUBG label", label);
+    // console.log("DEUBG this.state.opps", this.state.opps);
+    // console.log("DEUBG this.getSelectedOpp()", this.getSelectedOpp());
+    // console.log("DEUBG this.props.match.params.opportunityId", this.props.match.params.opportunityId);
+    // console.log("DEUBG this.props.location.pathname", this.props.location.pathname);
+    // console.log("DEUBG this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)", this.props.location.pathname.match(/\/my-business\/(.*)\/notes/));
+    // // "/my-business/5abd40ef53064b4da4cb1874/notes/5abd40f053064b4da4cb1889".match(/\/my-business\/(.*)\/notes/)
 
     let newOpps = this.state.opps.slice();
     for (let iOpp = 0; iOpp < this.state.opps.length; iOpp++) {
       if (this.state.opps[iOpp]._id === opportunityId) {
+        oppChangedId = this.state.opps[iOpp]._id
         for (let iNote = 0; iNote < this.state.opps[iOpp].notes.length; iNote++) {
           if (this.state.opps[iOpp].notes[iNote]._id === noteId) {
             console.log("Note found", this.state.opps[iOpp].notes[iNote]);
+              noteChangedId = this.state.opps[iOpp].notes[iNote]._id
             for (let iTextInput = 0; iTextInput < this.state.opps[iOpp].notes[iNote].textInputs.length; iTextInput++) {
               if (this.state.opps[iOpp].notes[iNote].textInputs[iTextInput].label === label) {
                 console.log("Label found", this.state.opps[iOpp].notes[iNote].textInputs[iTextInput]);
                 newOpps[iOpp].notes[iNote].textInputs[iTextInput].text = e.target.value;
                 this.setState({
-                  opps: newOpps
+                  opps: newOpps,
+                  didItChanged: true
                 })
                 return;
               }
@@ -82,8 +108,6 @@ class Dashboard extends Component {
         }
       }
     } 
-
-    
   }
 
   getSelectedOpp() {
