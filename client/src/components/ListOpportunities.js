@@ -17,15 +17,15 @@ class ListOpportunities extends Component {
    render() {                
     return (
       <div>
-
         <div className='FirstBar'>
-        {this.props.opps.map((opp) => {
-          return (
-            <li key={opp._id} 
-            
-            ><Link onClick={()=> {this.props.onClick(opp._id)}}to={"/myBusiness"}>{opp.oppName}</Link></li>
-           )
-        })}
+          <ul> 
+            {this.props.opps.map((opp) => {
+              return (
+                <li  
+                ><Link key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link></li>
+              )
+            })}
+          </ul>
         </div>
       </div>
    )}
@@ -33,6 +33,7 @@ class ListOpportunities extends Component {
 }
 
 export default ListOpportunities;
+
 
 
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
+import api from '../api';
 
+ let id= '5abd40ef53064b4da4cb1872';
 
 class ListNotes extends Component {
   constructor(props) {
@@ -9,40 +11,37 @@ class ListNotes extends Component {
       opps : [],
       selectedOpp:'',
       selectedNote:'',
-      selectedLabel:'',
       datas:''
     } 
-    this.test = this.test.bind(this)
-  };
-  // componentDidMount() {
-  //   mergeName = () => {
-  //     let toShow= [];
-  //     for (let i = 0; i<)
-  //   }
-  // }
- test() {this.setState({
-   datas:this.props.notes
-    })
     
+  };
+
+  componentDidMount() {
+    // this.setState({
+    //   selectedNote: this.props.notes
+    //     })
   }
 
-   render() {                
+
+   render() {
+    this.opportunityId = this.props.match.params.opportunityId;
+    for (let i = 0; i < this.props.opps.length; i++) {
+      if (this.props.opps[i]._id === this.opportunityId) {
+        this.selectedOpp = this.props.opps[i]
+      }
+    }                
     return (
       <div>
-      {/* {
-        this.props.notes.map((note)=> {
-          return (
-          <h3>{note.name}</h3>,
-          <h5>{note.label}</h5>,
-          <h5>{note.text}</h5>
-          )
-        }) 
-        } */}
 
-      {/* {(this.test.length>0 && this.test) {console.log()}}
-      {this.props.notes.map((note)=>{<div>{note}</div>})} */}
-      {/* {console.log('name', this.props.notes[0])} */}
-        
+
+        {this.selectedOpp && this.selectedOpp.notes.map((note)=> {
+            return (
+              <ol>
+                <li><Link to={`notes/${note._id}`} onClick={()=> {console.log('clicked')}}>{note.name}</Link></li>
+              </ol>
+            )
+          })
+        }
       </div>
    )}
 

@@ -17,7 +17,7 @@ class MyBusiness3 extends Component {
     this.state = {
       opps : [],
       selectedOpp:'',
-      notes:'',
+      noteTitle:[],
       selectedLabel:'',
       value:''
     } 
@@ -42,36 +42,45 @@ class MyBusiness3 extends Component {
   }
 
   getFilteredNote=(oppId)=> {
-    let notesData=[];
+    console.log('opp',oppId)
+    let temp=[];
+    let noteTitle=[];
       for (let i = 0; i < this.state.opps.length; i++) {
         if (oppId === this.state.opps[i]._id) {
           for (let j = 0; j < this.state.opps[i].notes.length; j++) {
-            this.state.opps[i].notes[j].name = this.state.opps[i].notes[j].name
-            notesData[j].name =  this.state.opps[i].notes[j].name
-            notesData.push(this.state.opps[i].notes[j].textInputs)
+            console.log('export array',this.state.opps[i].notes[j])
+            noteTitle.push({name:this.state.opps[i].notes[j].name,id:this.state.opps[i].notes[j]._id})
+              console.log('export des titres',noteTitle)
+              // temp.filter((note)=> {
+              //   <div>{note.name}s</div>
+              // })
+
+            // this.state.opps[i].notes[j].name = this.state.opps[i].notes[j].name
+            // notesData[j].name =  this.state.opps[i].notes[j].name
+            // notesData.push(this.state.opps[i].notes[j].textInputs)
             
           }
         }
       }
-      console.log('debug',notesData)
-      this.setState({notes:notesData})
-      return(notesData)
+      // console.log('debug',notesData)
+      this.setState({noteTitle:noteTitle})
+      return(noteTitle)
   }
 
    render() {                
     return (
-      <div>
-        <div>
+      <div className="row">
+        <div className='col-3 FirsttBar'>
           <ListOpportunities onClick={this.selectedOpp} opps={this.state.opps}/>
         </div>
 
-        <div className='SecondtBar'>
-        <ListNotes notes={this.state.notes}/>
+        <div className='col-3 SecondtBar'>
+        <ListNotes notes={this.state.noteTitle}/>
         </div>
-        <div className='ThirdBar'>
+        <div className='col-3 ThirdBar'>
         </div>
 
-        <div className='FourthBar'>
+        <div className='col-3 FourthBar'>
         </div>
 
       </div>

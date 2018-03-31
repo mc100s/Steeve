@@ -18,6 +18,9 @@ import Signup from './Signup';
 import Login from './Login';
 import MyBusiness3 from './MyBusiness3';
 import ViewNote from './ViewNote';
+import EditSubNote from './EditSubNote';
+import ListOpportunities from './ListOpportunities';
+import Dashboard from './Dashboard';
 
 
 
@@ -36,7 +39,7 @@ class Header extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="">Welcome to Steve</h1>
           <Link to="/home">Home</Link>
-          <Link to="/myBusiness"> Mybusiness</Link> 
+          <Link to="/my-business"> My Business</Link> 
           {/* <Link to="/myNotes"> My Notes</Link> 
           <Link to="/myBusiness"> My Business</Link> */}
           {/* <Link to="/mySettings"> Settings</Link>  
@@ -56,11 +59,23 @@ class Header extends Component {
           <Route path="/mySettings" component={MySettings} />
           {/* <Route path="/steve" component={Steve} /> */}
           <Route path="/notes/:id/edit" component={AddNote} />
-          <Route path="/notes/:id" component={ViewNote} />
+          <Route path="/notes/:id" component={EditSubNote} />
           {/* <Route path="/myBusiness2" component={MyBusiness2} /> */}
-          <Route path="/myBusiness" component={MyBusiness3} />
+          {/* <Route path="/my-business" render={() => (
+            <div className="row">
+              <Route className="col-3" path="/my-business" component={ListOpportunities} />
+              <Route className="col-3" path="/my-business/:opportunityId/notes" component={MyBusiness3} />
+              <Route className="col-6" path="/my-business/:opportunityId/notes/:noteId" component={MyBusiness3} />
+            </div>
+          )} /> */}
+          <Route path="/my-business" component={Dashboard} />
           
-        </Switch>        
+        </Switch> 
+
+        {/* <button className="btn btn-primary btn-round">         
+          
+          <i class="material-icons">favorite</i> Test
+        </button>          */}
       </div>
     );
   }

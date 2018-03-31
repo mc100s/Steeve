@@ -12,158 +12,52 @@ class EditSubNote extends Component {
       selectedLabel:'',
       value:''
     } 
-    // this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
   };
-
-
-   render() {                
+  
+  handleInputChange(event){
+    this.setState({
+      searchInput: event.target.value,
+      value: event.target.value
+    })
+  }
+  
+  getFitleredNotes() {
+    let filteredNotes = []
+    for (let i = 0; i < this.state.notes.length; i++) {
+      if (this.state.notes[i].name.toLowerCase().includes(this.state.searchInput.toLowerCase())) {
+        filteredNotes.push(this.state.notes[i])
+      }
+    }
+    return filteredNotes;
+  }
+  
+  render() {      
+    this.opportunityId = this.props.match.params.opportunityId;
+    for (let i = 0; i < this.props.opps.length; i++) {
+      if (this.props.opps[i]._id === this.opportunityId) {
+        this.selectedOpp = this.props.opps[i]
+      }
+    }                       
     return (
       <div>
-
-        <div className='FirstBar'>
-        {this.props.opps.map((opp) => {
-          return (
-            <Link to={'/note'+opp._id} >{opp.oppName}</Link>
-           )
-        })}
-        </div>
-
+        <br/>
+          {console.log(this.selectedOpp)}
+          {this.selectedOpp && this.selectedOpp.notes.map((note)=> {
+              return (
+                <div>
+                  <p className=''>{note.textInputs.map((textInput)=> (
+                      <li>{textInput.label} : <strong>{textInput.text}</strong></li>
+                    )
+                  )}</p>
+                </div>
+              )
+            })}
       </div>
-   )}
-
+    )
+  }
 }
-
-export default EditSubNote;
-
-
-
-
-
-// class MyBusiness3 extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       searchInput:'',
-//       notes:[],
-//       accounts:[],
-//       opps : [],
-//       value:''
-//     } 
-//     this.handleInputChange = this.handleInputChange.bind(this)
-//   };
   
-//   componentDidMount() {
-//     api.getAccounts()
-//     .then((resp) => {
-//       this.setState({
-//         accounts: resp
-//       })
-//     });
-//     api.getNotes()
-//     .then((resp) => {
-//       this.setState({
-//         notes: resp
-//       })
-//       console.log(resp)
-//     })
-//     api.getOpps()
-//     .then((resp) => {
-//       this.setState({
-//         opps: resp
-//       })
-//       // console.log('Opps',resp)
-//     })
-//   }
+  export default EditSubNote;
+
   
-//  handleInputChange(event){
-//   this.setState({
-//       searchInput: event.target.value,
-//       value: event.target.value
-//     })
-//   }
-
-//   getFitleredNotes() {
-//     let filteredNotes = []
-//     for (let i = 0; i < this.state.notes.length; i++) {
-//       if (this.state.notes[i].name.toLowerCase().includes(this.state.searchInput.toLowerCase())) {
-//         filteredNotes.push(this.state.notes[i])
-//       }
-//     }
-//     return filteredNotes;
-//   }
-  
-//   render() {                
-//     return (
-//       <div>
-//       <LastAccount/>
-//       <div>
-//       <button onClick={() => {
-//         api.createNote()
-//         .then((resp) => {
-//           this.props.history.push('/notes/'+resp._id) // fait un redurect vers une nouvelle route
-//         })
-//       }}
-//       >Add Note</button>
-//       <form>
-//         <label> Search
-//           <input type="text"
-//           placeholder="Account, Opp, Note"
-//           value={this.state.value}
-//           onChange={this.handleInputChange}
-//           />
-//         </label>
-//         {/* <p>{this.state.searchInput}</p> */}
-//         <div>{this.getFitleredNotes().map((note) => {
-//           return <Link to={'/note'+note._id} >{note.name}</Link>
-//         })}</div>
-//       </form>
-//       {/* <Viewer result={() =>{this.handleInputChange}}/> */}
-//       </div>
-//       </div>
-//     )
-//   }
-// }
-
-// class MyBusiness2 extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       notes: [],
-//       searchInput : '',
-//       searchResult:[]
-//     } 
-
-//     this.handleClick = this.handleClick.bind(this);
-//   };
-
-//   handleClick(e) {
-//     console.log('submitted')
-//   }
-
-
-//   render() {                
-//     return (
-//       <div>
-//       <LastAccount/>
-//       <div>
-//       <button onClick={() => {
-//         api.createNote()
-//         .then((resp) => {
-//           this.props.history.push('/notes/'+resp._id) // fait un redurect vers une nouvelle route
-//         })
-//       }}
-//       >Add Note</button>
-//       {/* <SearchBar onChangeJulien={(value)=> this.setState({searchInput:value})} />  */}
-//       </div>
-//       <form onSubmit={this.handleSubmit}>
-//           <label>
-//           <input placeholder='Account, Opp or Note' type="text" value={this.state.value} onChange={(event)=> {this.props.onChangeJulien(event.target.value)}} onclick={this.handleClick}/>
-//           </label>
-//           <input type="submit" value="Submit" /> 
-//         </form>
-//       </div>
-//     )
-//   }
-// }
-
-
