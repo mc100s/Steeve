@@ -7,6 +7,7 @@ import EditSubNote from './EditSubNote';
 
 let noteChangedId =''
 let oppChangedId = ''
+let oppIndex = ''
 
 class Dashboard extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class Dashboard extends Component {
       {
         console.log('KIKOUUU',this.state.opps[i]._id, oppChangedId)
         if(this.state.opps[i]._id = oppChangedId )
+        oppIndex = i
         api.updateNote(noteChangedId,this.state.opps[i].notes)
         console.log('saved')
         this.setState({
@@ -49,6 +51,7 @@ class Dashboard extends Component {
       .then(console.log('OPPS',this.state.opps))
     }
  
+  
   selectedOpp = (event) =>{
     this.setState({selectedOpp:event})
       console.log('selectedopp',event)
@@ -124,6 +127,16 @@ class Dashboard extends Component {
     return null
   }
   
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('submitted');
+    api.updateNote(noteChangedId,this.state.opps[oppIndex].notes)
+      .then(this.setState({
+          didItChanged: false
+        }))
+    .then(this.props.history.push('/my-business'))
+  }
+
   render() {                
     return (
       <div className="App">
@@ -131,9 +144,10 @@ class Dashboard extends Component {
           <Route className="col-3" path="/my-business" render={() => <ListOpportunities onClick={this.selectedOpp.bind(this)} opps={this.state.opps} />} />
           <Route className="col-3" path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} />} />
           <Route className="col-6" path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
-            <EditSubNote {...props} opps={this.state.opps} onChange={this.handleChange.bind(this)} />
+            <EditSubNote {...props} opps={this.state.opps} onChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)} />
           } />
         </div>
+        {/* {this.displayLoader()} */}
      </div>
     );
   }

@@ -73,13 +73,9 @@ class EditSubNote extends Component {
                 </div>
               )
             })}
-
-        {/* <form>
-          <div class="form-group">
-            <label for="exampleInput1" class="bmd-label-floating">With Floating Label</label>
-            <input type="text" class="form-control" id="exampleInput1"/>
-          </div>
-        </form> */}
+        
+      
+        <input type="submit" value="Finish" onClick={this.props.handleSubmit}/>
       </div>
     )
   }
@@ -87,7 +83,6 @@ class EditSubNote extends Component {
   
   export default EditSubNote;
 
-  
 
   // <form onSubmit={null}>
   //       <label>
