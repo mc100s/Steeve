@@ -30,12 +30,15 @@ class ListNotes extends Component {
     return (
       <div className="col-3"> 
         <button onClick={() => {
-          api.createNote()
+          console.log('id au back',this.props.match.params.opportunityId)
+          api.createNote(this.props.match.params.opportunityId)
           .then((resp) => {
-            this.props.history.push('/my-business/:opportunityId/notes/new/:'+resp._id) // fait un redurect vers une nouvelle route
+            console.log(resp)
+            this.props.history.push('/my-business/'+ this.props.match.params.opportunityId+'/notes/:'+resp._id+'/edit') // fait un redurect vers une nouvelle route
         })
       }}
       >Add Note</button>
+      {/* /notes/:id/edit */}
 
         {this.selectedOpp && this.selectedOpp.notes.map((note)=> {
             return (

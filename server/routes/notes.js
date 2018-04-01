@@ -19,7 +19,6 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage });
 
 // Get opps from a user
-//Seed user ID de Jordan : 5aad205962445a3e5c7c5ac4 
 router.get('/:id/user', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
   Opportunity.find({owner:req.params.id}).populate('notes')  
   .then(opps => {
@@ -29,7 +28,6 @@ router.get('/:id/user', passport.authenticate("jwt", config.jwtSession),(req, re
 });
 
 // Get accounts from a user
-//Seed user ID de Jordan : 5aad205962445a3e5c7c5ac4 
 router.get('/:id/user/accounts', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
   accounts.find({owner:req.params.id}).populate('notes')  
   .then(opps => {
@@ -61,8 +59,8 @@ router.get('/:id', passport.authenticate("jwt", config.jwtSession),(req, res, ne
 
 //----CREATE A NEW NOTE----
 router.post('/:opportunityId/addNote', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  // console.log(req.params)
-  Opportunity.findById(req.params.id)
+  console.log('test',req.params.opportunityId)
+  Opportunity.findById(req.params.opportunityId)
   .then((resp) => {  
     // console.log(resp);
     const newNote = new Note(req.body);
