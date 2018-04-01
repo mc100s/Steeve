@@ -5,9 +5,6 @@ import ListOpportunities from './ListOpportunities';
 import ListNotes from './ListNotes';
 import EditSubNote from './EditSubNote';
 
-let noteChangedId =''
-let oppChangedId = ''
-let oppIndex = ''
 
 class Dashboard extends Component {
   constructor(props) {
@@ -19,26 +16,39 @@ class Dashboard extends Component {
       didItChanged : false,
       noteTitle:''
     }
-    setInterval(this.autoSave.bind(this), 3000);
+    this.oppId = null;
+    this.oppChangedId = null;
+    this.noteChangedId = null;
+      // setInterval(this.autoSave.bind(this), 3000);
   }
 
   autoSave(){
     let noteId = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/);
-    console
     console.log('setintervall')
+    console.log('noteId',this.props.location.pathname.match(/\/my-business\/(.*)\/notes/))
     if (this.state.didItChanged) {
       for (let i = 0; i< this.state.opps.length;i++)
       {
-        console.log('KIKOUUU',this.state.opps[i]._id, oppChangedId)
-        if(this.state.opps[i]._id = oppChangedId )
-        oppIndex = i
-        api.updateNote(noteChangedId,this.state.opps[i].notes)
+        api.updateNote(this.noteChangedId,this.state.opps[this.oppIndex].notes[this.noteChangedId])
         console.log('saved')
         this.setState({
           didItChanged: false
         })
       }
     }
+  }
+
+  save() {
+
+    let oppIndex = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1];
+    let tempNoteIndex =  this.props.location.pathname.match(/\/my-business\/(.*)\//).input;
+    let noteIndex = tempNoteIndex.substring(44)
+
+
+    console.log('oppIndex',oppIndex)
+    console.log('tempnoteIndex',tempNoteIndex)
+    console.log('noteIndex',noteIndex)
+
   }
 
   componentDidMount() {
@@ -76,29 +86,17 @@ class Dashboard extends Component {
   }
 
   handleChange(e, opportunityId, noteId, label) {
-    // console.log("DEUBG YOLO");
-    // console.log("DEUBG e.target.value", e.target.value);
-    // console.log("DEUBG opportunityId", opportunityId);
-    // console.log("DEUBG noteId", noteId);
-    // console.log("DEUBG label", label);
-    // console.log("DEUBG this.state.opps", this.state.opps);
-    // console.log("DEUBG this.getSelectedOpp()", this.getSelectedOpp());
-    // console.log("DEUBG this.props.match.params.opportunityId", this.props.match.params.opportunityId);
-    // console.log("DEUBG this.props.location.pathname", this.props.location.pathname);
-    // console.log("DEUBG this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)", this.props.location.pathname.match(/\/my-business\/(.*)\/notes/));
-    // // "/my-business/5abd40ef53064b4da4cb1874/notes/5abd40f053064b4da4cb1889".match(/\/my-business\/(.*)\/notes/)
-
     let newOpps = this.state.opps.slice();
     for (let iOpp = 0; iOpp < this.state.opps.length; iOpp++) {
       if (this.state.opps[iOpp]._id === opportunityId) {
-        oppChangedId = this.state.opps[iOpp]._id
+        this.oppIndex = iOpp
         for (let iNote = 0; iNote < this.state.opps[iOpp].notes.length; iNote++) {
           if (this.state.opps[iOpp].notes[iNote]._id === noteId) {
-            console.log("Note found", this.state.opps[iOpp].notes[iNote]);
-              noteChangedId = this.state.opps[iOpp].notes[iNote]._id
+            // console.log("Note found", this.state.opps[iOpp].notes[iNote]);
+              this.noteChangedId = this.state.opps[iOpp].notes[iNote]._id
             for (let iTextInput = 0; iTextInput < this.state.opps[iOpp].notes[iNote].textInputs.length; iTextInput++) {
               if (this.state.opps[iOpp].notes[iNote].textInputs[iTextInput].label === label) {
-                console.log("Label found", this.state.opps[iOpp].notes[iNote].textInputs[iTextInput]);
+                // console.log("Label found", this.state.opps[iOpp].notes[iNote].textInputs[iTextInput]);
                 newOpps[iOpp].notes[iNote].textInputs[iTextInput].text = e.target.value;
                 this.setState({
                   opps: newOpps,
@@ -129,8 +127,29 @@ class Dashboard extends Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    console.log('submitted');
-    api.updateNote(noteChangedId,this.state.opps[oppIndex].notes)
+
+    let oppId = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1];
+    let oppIndex = ''
+    let tempNoteId =  this.props.location.pathname.match(/\/my-business\/(.*)\//).input;
+    let noteId = tempNoteId.substring(44)
+    let noteIndex =''
+
+    let newOpps = this.state.opps.slice();
+    for (let iOpp = 0; iOpp < this.state.opps.length; iOpp++) {
+      if (this.state.opps[iOpp]._id === oppId) {
+          oppIndex = iOpp
+          // console.log("Note found", iOpp);
+        for (let iNote = 0; iNote < this.state.opps[iOpp].notes.length; iNote++) {
+          if (this.state.opps[iOpp].notes[iNote]._id === noteId) {
+            // console.log("IDDDDDDDDDD", iNote);
+              noteIndex = iNote
+          }
+        }
+      }
+    } 
+    console.log('id Note', noteId )
+    console.log('note à envoyer', this.state.opps[oppIndex].notes[noteIndex])
+    api.updateNote(noteId,this.state.opps[oppIndex].notes[noteIndex])
       .then(this.setState({
           didItChanged: false
         }))
@@ -141,13 +160,13 @@ class Dashboard extends Component {
     return (
       <div className="App">
         <div className="row">
-          <Route className="col-3" path="/my-business" render={() => <ListOpportunities onClick={this.selectedOpp.bind(this)} opps={this.state.opps} />} />
-          <Route className="col-3" path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} />} />
-          <Route className="col-6" path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
+          <Route path="/my-business" render={() => <ListOpportunities onClick={this.selectedOpp.bind(this)} opps={this.state.opps} />} />
+          <Route path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} />} />
+          <Route path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
             <EditSubNote {...props} opps={this.state.opps} onChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)} />
           } />
         </div>
-        {/* {this.displayLoader()} */}
+        {/* {this.save()} */}
      </div>
     );
   }

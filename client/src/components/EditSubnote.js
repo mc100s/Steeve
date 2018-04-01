@@ -50,7 +50,7 @@ class EditSubNote extends Component {
       }
     }                       
     return (
-      <div>
+      <div className="col-6">
         <br/>
           {console.log(this.selectedOpp)}
           {this.selectedOpp && this.selectedOpp.notes.map((note)=> {

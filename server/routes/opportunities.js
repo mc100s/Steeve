@@ -28,6 +28,16 @@ router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next
   })
 });
 
+// //Update all opps
+// router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+//   Opportunity.find({owner:req.user._id})
+//   .then(opps => {
+//     Opportunity.save
+//     res.json(opps)
+//   })
+// });
+
+
 //create a new opp 
 router.post('/:id/opportunity', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   const newOpportunity = new Opportunity(req.body)

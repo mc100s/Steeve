@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Opportunity = require('../models/opportunity');
-const Notes = require('../models/note');
+const Note = require('../models/note');
 const passport = require('passport');
 const config = require('../config');
 
@@ -42,7 +42,7 @@ router.get('/:id/user/accounts', passport.authenticate("jwt", config.jwtSession)
 
 //-----GET ALL NOTES----
 router.get('/', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-  Notes.find({})  
+  Note.find({})  
   .then(notes => {
     // console.log(notes)
     res.json(notes)
@@ -51,7 +51,7 @@ router.get('/', passport.authenticate("jwt", config.jwtSession),(req, res, next)
 
 //-----GET One NOTES----
 router.get('/:id', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-  Notes.findById(req.params.id)  
+  Note.findById(req.params.id)  
   .then(notes => {
     console.log(notes)
     res.json(notes)
@@ -65,7 +65,7 @@ router.post('/:opportunityId/addNote', passport.authenticate("jwt", config.jwtSe
   Opportunity.findById(req.params.id)
   .then((resp) => {  
     // console.log(resp);
-    const newNote = new Notes(req.body);
+    const newNote = new Note(req.body);
     newNote.owner = resp.owner;
     newNote.save((err,doc) => {
       if(err) 
@@ -79,10 +79,10 @@ router.post('/:opportunityId/addNote', passport.authenticate("jwt", config.jwtSe
 
 
 router.put('/:id', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-  // console.log(req.body)
-  Notes.update({_id:req.params.id}, {$set : {...req.body}}, function callback (err, numAffected) {
+  console.log("DEBUG req.body", req.body)
+  Note.findByIdAndUpdate(req.params.id,req.body, function (err, noteDoc) {
   if(err) return res.status(500).send(err)
-  res.json({Notes})
+  else res.json({success: true, noteDoc})
   })
 
 })

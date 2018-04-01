@@ -28,7 +28,7 @@ class ListNotes extends Component {
       }
     }                
     return (
-      <div> 
+      <div className="col-3"> 
         <button onClick={() => {
           api.createNote()
           .then((resp) => {

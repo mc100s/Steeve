@@ -17,13 +17,13 @@ class ListOpportunities extends Component {
   
    render() {                
     return (
-      <div>
+      <div className="col-3">
         <div className='FirstBar'>
         <Search/>
           <ul> 
             {this.props.opps.map((opp) => {
               return (
-                <div  
+                <div 
                 ><Link className='btn btn-primary' key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link></div>
               )
             })}
