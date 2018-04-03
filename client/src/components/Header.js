@@ -50,10 +50,9 @@ class Header extends Component {
           <Route path="/login" component={Login} />
           <Route path="/myNotes" component={Notes} />
           <Route path="/mySettings" component={MySettings} />
-          <Route path="/notes/:id/edit" component={AddNote} />
+          <Route path="/notes/:id/edit" component={EditSubNote} />
           <Route path="/notes/:id" component={EditSubNote} />
           <Route path="/my-business" component={Dashboard} />
-          <Route path="/my-business/:oppid/notes/:noteid" component={Dashboard} />
         </Switch> 
 
       </div>

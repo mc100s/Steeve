@@ -18,27 +18,15 @@ class EditSubNote extends Component {
       didItChanged : false,
       didTitleChanged : false,
       title: '',
-      currentInput:''
+      currentInput:'',
+      new:false
     
     }
 
   } 
 
-  // componentDidMount() {
-  //   this.setState({
-  //     currentNote.textInputs[0].text: this.selectedOpp.notes.textInput[0].text
-  //       })
-  // }
 
-  updateOppIdNoteID2 () {
-    console.log('thisupdate active')
-    console.log('this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1]',this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1])
-    console.log('this.props.location.pathname.match(/\/my-business\/(.*)\//).input',this.props.location.pathname.match(/\/my-business\/(.*)\//).input)
-    this.oppId = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1];
-    let tempNoteId =  this.props.location.pathname.match(/\/my-business\/(.*)\//).input;
-    this.noteChangedId = tempNoteId.substring(44)
-  }
-  
+
   
   getFitleredNotes() {
     let filteredNotes = []
@@ -52,7 +40,7 @@ class EditSubNote extends Component {
   
   render() {      
     this.opportunityId = this.props.match.params.opportunityId;
-    let CurrentNoteId=(this.props.location.pathname.match(/\/my-business\/(.*)\//).input.substring(44)) 
+    let CurrentNoteId=this.props.match.params.noteId
     for (let i = 0; i < this.props.opps.length; i++) {
       if (this.props.opps[i]._id === this.opportunityId) {
         this.selectedOpp = this.props.opps[i]
@@ -61,34 +49,72 @@ class EditSubNote extends Component {
     } 
                          
     return (
+      this.state.new ? (<EmptyNote/>) : (
       <div className="col-6"> 
         <br/>
-          {console.log(this.selectedOpp)}
+          {console.log('this selecyeopp',this.selectedOpp)}
           {this.selectedOpp && this.selectedOpp.notes.filter(o =>o._id ===this.props.match.params.noteId ).map((note)=> {
+            console.log("found")
               return (
-                <div>
-                  <label for="exampleInput1" className="bmd-label-floating">Title</label>
-                  <input value={note.name} onChange={(e) => this.props.onChangeTitle(e, this.opportunityId, note._id)} type="text" class="form-control" id="exampleInput1"/><br/>
-                 
-                  {note.textInputs.map((textInput)=> (
-                      <div className="form-group">
-                        <label for="exampleInput1" className="bmd-label-floating">{textInput.label}</label>
-                        <textarea value={textInput.text} onChange={(e) => this.props.onChange(e, this.opportunityId, note._id, textInput.label)} type="text" className="form-control col-12" rows='4'></textarea>
-                      </div>
-                    )
-                  )}
-                </div>
+             
+                  <div>
+                    {console.log('map is working')}
+                    <label for="exampleInput1" className="bmd-label-floating">Title</label>
+                    <input value={note.name} onChange={(e) => this.props.onChangeTitle(e, this.opportunityId, note._id)} type="text" class="form-control" id="exampleInput1"/><br/>
+                  
+                    {note.textInputs.map((textInput)=> (
+                        <div className="form-group">
+                          <label for="exampleInput1" className="bmd-label-floating">{textInput.label}</label>
+                          <textarea value={textInput.text} onChange={(e) => this.props.onChange(e, this.opportunityId, note._id, textInput.label)} type="text" className="form-control col-12" rows='2'></textarea>
+                        </div>
+                      )
+                    )}
+
+
+                  </div>
+                
               )
             })}
         
       
         <input type="submit" value="Finish" onClick={this.props.handleSubmit}/>
-        {console.log(this.props.location.pathname.match(/\/my-business\/(.*)\//).input.substring(44))}
-        {this.updateOppIdNoteID2.bind(this)}
-        {console.log('props IDSSS',this.props.oppId,this.props.NoteId)}
+        <br/>
       </div>
+    ))
+  }
+}
+
+
+class EmptyNote extends Component {
+
+
+  render() {
+    {console.log('composant EmptyNote')}
+    return(
+      <div className="col-6"> emptynote
+      <br/>
+        {this.selectedOpp && this.selectedOpp.notes.filter(o =>o._id ===this.props.match.params.noteId ).map((note)=> {
+          return (
+            <div>
+              <label for="exampleInput1" className="bmd-label-floating">Title</label>
+              <input value={' '} onChange={(e) => this.props.onChangeTitle(e, this.opportunityId, note._id)} type="text" class="form-control" id="exampleInput1"/><br/>
+                  {note.textInputs.map((textInput)=> (
+                      <div className="form-group">
+                        <label for="exampleInput1" className="bmd-label-floating">{textInput.label}</label>
+                        <textarea value={' '} onChange={(e) => this.props.onChange(e, this.opportunityId, note._id, textInput.label)} type="text" className="form-control col-12" rows='2'></textarea>
+                      </div>
+                    )
+                  )}
+            </div>
+          )
+        })
+        }
+      <input type="submit" value="Finish" onClick={this.props.handleSubmit}/>
+      <br/>
+    </div>
     )
   }
+
 }
   
   export default EditSubNote;

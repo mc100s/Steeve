@@ -1,5 +1,38 @@
 import axios from 'axios';
 
+let noteModel = 
+{
+  name : ' ', 
+  currentItemsLabel : ['Metrics', 'Economic Buyer', 'Decision Criteria', 'Decision Process', 'Identified Pain', 'Champion'], // ex: Pain, Buyer, Decision Process,
+  sfdcItemsLabel : ['Pains', 'Metrics', 'EB'],
+  persoItemsLabel : ['Personnal Win', 'Hate Somebody'],
+  textInputs:[{
+    label : 'Metrics', 
+    text:' '
+  }, 
+  {
+    label:'Economic Buyer', 
+    text:' '
+  },
+  {
+    label:'Decision Criteria', 
+    text:" "
+  },
+    {
+      label : 'Decision Process', 
+      text:' '
+    }, 
+    {
+      label:'Identified Pain', 
+      text:' '
+    },
+    {
+      label:'Champion', 
+      text:' '}                     
+  ],  
+
+}
+
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3030/api',
 });
@@ -44,7 +77,8 @@ export default {
   createNote(opportunityId) {
     // axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
     return service
-    .post('notes/'+opportunityId+'/addNote')
+    .post('notes/'+opportunityId+'/addNote',noteModel
+  )
     .then(res => res.data)
     .catch(errHandler)
   },

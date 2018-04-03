@@ -29,14 +29,7 @@ class ListNotes extends Component {
     }                
     return (
       <div className="col-3"> 
-        <button onClick={() => {
-          console.log('id au back',this.props.match.params.opportunityId)
-          api.createNote(this.props.match.params.opportunityId)
-          .then((resp) => {
-            console.log(resp)
-            this.props.history.push('/my-business/'+ this.props.match.params.opportunityId+'/notes/:'+resp._id+'/edit') // fait un redurect vers une nouvelle route
-        })
-      }}
+        <button onClick={() => this.props.handleNewNote(this.props.match.params.opportunityId)}
       >Add Note</button>
       {/* /notes/:id/edit */}
 

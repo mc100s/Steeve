@@ -69,8 +69,23 @@ class Dashboard extends Component {
     })
     .then(console.log('OPPS',this.state.opps))
   }
-  
-  
+
+  handleNewNote(id){
+      console.log('id au back',id)
+      api.createNote(id)
+      .then((resp) => {
+        console.log(resp)
+        api.getOpps()
+        .then((opps) => {
+          this.setState({
+            opps:opps,
+            new:true
+          })
+          this.props.history.push('/my-business/'+ id+'/notes/'+resp._id) // fait un redurect vers une nouvelle route          
+        })
+        .then(console.log('OPPS',this.state.opps))
+    })
+  }  
   selectedOpp = (event) =>{
     this.setState({selectedOpp:event})
     console.log('selectedopp',event)
@@ -191,11 +206,11 @@ class Dashboard extends Component {
       <div className="App">
       <div className="row">
       <Route path="/my-business" render={() => <ListOpportunities onClick={this.selectedOpp.bind(this)} opps={this.state.opps} />} />
-      <Route path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} />} />
+      <Route path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} handleNewNote={this.handleNewNote.bind(this)}/>} />
       <Route path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
         <EditSubNote {...props} updateOppIdNoteID={this.updateOppIdNoteID} 
         onChangeTitle={this.handleChangeTitle.bind(this)}
-        oppId={this.oppChangedId} noteId={this.noteChangedId} opps={this.state.opps} 
+        opps={this.state.opps} 
         onChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)} />
       } />
       </div>
