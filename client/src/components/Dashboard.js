@@ -14,21 +14,75 @@ class Dashboard extends Component {
       notes:[],
       selectedOpp:'',
       didItChanged : false,
-      noteTitle:''
+      labelPerso:'',
+      noteTitle:'',
+      search : ''
     }
     this.oppId = null;
     this.oppChangedId = null;
     this.noteChangedId = null;
     // setInterval(this.autoSave.bind(this), 3000);
   }
+
+// handleSearch() {
+//   This.state.search
+//   que input et search soit lié" et a chaque appel ca modifie le opps . This.state.filterd opps peut etre
+
+// }
+
+  newLabelPerso(e, opportunityId, noteId, labelPerso) {
+    let newOpps = this.state.opps.slice();
+    for (let iOpp = 0; iOpp < this.state.opps.length; iOpp++) {
+      if (this.state.opps[iOpp]._id === opportunityId) {
+        this.oppIndex = iOpp
+        for (let iNote = 0; iNote < this.state.opps[iOpp].notes.length; iNote++) {
+          if (this.state.opps[iOpp].notes[iNote]._id === noteId) {
+            // console.log("Note found", this.state.opps[iOpp].notes[iNote]);
+            this.noteChangedId = this.state.opps[iOpp].notes[iNote]._id
+            newOpps[iOpp].notes[iNote].persoItems.push(
+              {
+                label : labelPerso,
+                text : ''
+              }
+            )
+            this.setState({
+              opps: newOpps,
+              didItChanged: true
+            })
+            return;
+          }
+        }
+      }
+    }  
+  }
   
-  updateOppIdNoteID () {
-    // console.log('thisupdate active')
-    // console.log('this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1]',this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1])
-    // console.log('this.props.location.pathname.match(/\/my-business\/(.*)\//).input',this.props.location.pathname.match(/\/my-business\/(.*)\//).input)
-    this.oppId = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1];
-    let tempNoteId =  this.props.location.pathname.match(/\/my-business\/(.*)\//).input;
-    this.noteChangedId = tempNoteId.substring(44)
+  handleChangePersoInput (e, opportunityId, noteId, labelPerso) {
+    let newOpps = this.state.opps.slice();
+    for (let iOpp = 0; iOpp < this.state.opps.length; iOpp++) {
+      if (this.state.opps[iOpp]._id === opportunityId) {
+        this.oppIndex = iOpp
+        for (let iNote = 0; iNote < this.state.opps[iOpp].notes.length; iNote++) {
+          if (this.state.opps[iOpp].notes[iNote]._id === noteId) {
+            // console.log("Note found", this.state.opps[iOpp].notes[iNote]);
+            this.noteChangedId = this.state.opps[iOpp].notes[iNote]._id
+            for (let persoItems = 0; persoItems < this.state.opps[iOpp].notes[iNote].persoItems.length; persoItems++) {
+              if (this.state.opps[iOpp].notes[iNote].persoItems[persoItems].label === labelPerso) {
+                // console.log("Label found", this.state.opps[iOpp].notes[iNote].textInputs[iTextInput]);
+                newOpps[iOpp].notes[iNote].persoItems[persoItems].text = e.target.value;
+                this.setState({
+                  opps: newOpps,
+                  didItChanged: true
+                })
+                return;
+              }
+            }
+          }
+        }
+      }
+    }     
+    // this.oppId = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1];
+    // this.noteChangedId =  this.props.location.pathname.match(/\/my-business\/(.*)\//).input.substring(44);
+    // return this.noteChangedId
   }
   
   autoSave(){
@@ -179,7 +233,7 @@ class Dashboard extends Component {
         }
       }
     } 
-    console.log('id Note', noteId )
+    // console.log('id Note', noteId )
     console.log('note à envoyer', this.state.opps[oppIndex].notes[noteIndex])
     api.updateNote(noteId,this.state.opps[oppIndex].notes[noteIndex])
     .then(this.setState({
@@ -197,6 +251,8 @@ class Dashboard extends Component {
           <Route path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
             <EditSubNote {...props} updateOppIdNoteID={this.updateOppIdNoteID} 
             onChangeTitle={this.handleChangeTitle.bind(this)}  opps={this.state.opps} 
+            handleChangePersoInput = {this.handleChangePersoInput.bind(this)}
+            newLabelPerso = {this.newLabelPerso.bind(this)}
             onChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)} />
           } />
         </div>

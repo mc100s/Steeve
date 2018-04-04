@@ -6,18 +6,6 @@ import Signup from './Signup';
 import ReactDOM from 'react-dom';
 
 
-// import Secret from './Settings';
-// import Secret from './Steeve';
-// import Login from './Login';
-// import Signup from './Signup';
-// import api from '../api';
-// import logo from '../logo.svg';
-
-
-//import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router';
-
-
-
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -25,21 +13,12 @@ class Home extends Component {
       x: []
     }
   }
-  // componentDidMount() {
-  //   api.getNotes()
-  //   .then((resp) => {
-  //     console.log('apres', resp)
-  //   })
-  //   }
- 
   
   render() {                
     return (
      <div>
        <p>This is Home</p>
-       <Login/>
-       <Signup/>
-      </div>
+        </div>
     );
   }
 }

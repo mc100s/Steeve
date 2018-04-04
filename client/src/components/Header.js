@@ -31,6 +31,10 @@ class Header extends Component {
       x: []
     }
   }
+
+  handleLogoutClick(e) {
+    api.logout()
+  }
   
   render() {                
     return (
@@ -39,9 +43,10 @@ class Header extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="">Welcome to Steve</h1>
           <Link to="/home">Home</Link>
-          <Link to="/my-business"> My Business</Link> 
-          <Link to="/login"> Login</Link> 
-          <Link to="/signup"> Signup</Link> 
+          <Link to="/my-business"> My Business</Link>
+          {!api.isLoggedIn() && <Link to="/signup">Signup</Link> }
+          {!api.isLoggedIn() && <Link to="/login">Login</Link> }
+          {api.isLoggedIn() && <Link to="/home" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> } 
 
         </header>
         <Switch>

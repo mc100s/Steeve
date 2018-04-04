@@ -42,9 +42,13 @@ const errHandler = err => {
   throw err.response.data;
 };
 
+
+
 export default {
   service: service,
-  
+  isLoggedIn() {
+    return localStorage.getItem('user') != null
+  },
   getNotes() {
     // axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVhYWY2YWI2NDljNjJlMzZlMDA2OTlmZCJ9.t2HEXtInBmlX675Bezx6rjRGs7Lm_m-94JJDKOGtCis';
     return service
