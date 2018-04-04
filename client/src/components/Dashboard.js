@@ -23,9 +23,9 @@ class Dashboard extends Component {
   }
   
   updateOppIdNoteID () {
-    console.log('thisupdate active')
-    console.log('this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1]',this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1])
-    console.log('this.props.location.pathname.match(/\/my-business\/(.*)\//).input',this.props.location.pathname.match(/\/my-business\/(.*)\//).input)
+    // console.log('thisupdate active')
+    // console.log('this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1]',this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1])
+    // console.log('this.props.location.pathname.match(/\/my-business\/(.*)\//).input',this.props.location.pathname.match(/\/my-business\/(.*)\//).input)
     this.oppId = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1];
     let tempNoteId =  this.props.location.pathname.match(/\/my-business\/(.*)\//).input;
     this.noteChangedId = tempNoteId.substring(44)
@@ -47,19 +47,6 @@ class Dashboard extends Component {
     }
   }
   
-  save() {
-    
-    // let oppIndex = this.props.location.pathname.match(/\/my-business\/(.*)\/notes/)[1];
-    // let tempNoteIndex =  this.props.location.pathname.match(/\/my-business\/(.*)\//).input;
-    // let noteIndex = tempNoteIndex.substring(44)
-    
-    
-    // console.log('oppIndex',oppIndex)
-    // console.log('tempnoteIndex',tempNoteIndex)
-    // console.log('noteIndex',noteIndex)
-    
-  }
-  
   componentDidMount() {
     api.getOpps()
     .then((resp) => {
@@ -67,7 +54,7 @@ class Dashboard extends Component {
         opps: resp
       })
     })
-    .then(console.log('OPPS',this.state.opps))
+    // .then(console.log('OPPS',this.state.opps))
   }
 
   handleNewNote(id){
@@ -204,18 +191,15 @@ class Dashboard extends Component {
   render() {                
     return (
       <div className="App">
-      <div className="row">
-      <Route path="/my-business" render={() => <ListOpportunities onClick={this.selectedOpp.bind(this)} opps={this.state.opps} />} />
-      <Route path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} handleNewNote={this.handleNewNote.bind(this)}/>} />
-      <Route path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
-        <EditSubNote {...props} updateOppIdNoteID={this.updateOppIdNoteID} 
-        onChangeTitle={this.handleChangeTitle.bind(this)}
-        opps={this.state.opps} 
-        onChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)} />
-      } />
-      </div>
-      {/* {this.save()} */}
-      {/* {this.updateOppIdNoteID.bind(this)} */}
+        <div className="row">
+          <Route path="/my-business" render={() => <ListOpportunities onClick={this.selectedOpp.bind(this)} opps={this.state.opps} />} />
+          <Route path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} handleNewNote={this.handleNewNote.bind(this)}/>} />
+          <Route path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
+            <EditSubNote {...props} updateOppIdNoteID={this.updateOppIdNoteID} 
+            onChangeTitle={this.handleChangeTitle.bind(this)}  opps={this.state.opps} 
+            onChange={this.handleChange.bind(this)} handleSubmit={this.handleSubmit.bind(this)} />
+          } />
+        </div>
       </div>
     );
   }
