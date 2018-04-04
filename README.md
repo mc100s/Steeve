@@ -66,6 +66,15 @@ $ git push heroku master
 $ heroku logs
 ```
 
+## Design with Sass
+
+All the Sass/CSS is in `client/src/styles`.
+
+You can modify for example:
+- `client/src/styles/_custom_bootstrap.scss`: to change some variables, such as the default colors
+- `client/src/styles/index.scss`: to put the global design
+
 ## Sources
 
 - https://daveceddia.com/create-react-app-express-production/
+- React + Sass: https://dev.to/sabatesduran/add-custom-bootstrap-4-sass-to-create-react-app
