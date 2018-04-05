@@ -26,8 +26,8 @@ class Search extends Component {
         <label> Search
           <input type="text"
             placeholder="Account, Opp, Note"
-            value={this.state.value}
-            onChange={this.handleInputChange}
+            value={this.props.search}
+            onChange={(e)=> {this.props.handleSearch(e)}}
           />
         </label>
         </form>

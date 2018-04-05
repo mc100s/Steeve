@@ -33,3 +33,8 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+i {
+  margin-left : 0.5em;
+  cursor: pointer
+}

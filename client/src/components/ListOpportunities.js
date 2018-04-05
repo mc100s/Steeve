@@ -19,16 +19,23 @@ class ListOpportunities extends Component {
     return (
       <div className="col-3">
         <div className='FirstBar'>
-        <Search/>
+        <Search search={this.props.search} handleSearch={this.props.handleSearch.bind(this)}/>
           <ul> 
-            {this.props.opps.map((opp) => {
+           <div> 
+              {this.props.getSearchedOpps().map((opp) => {
+                  return (<Link className='btn btn-primary' key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link>)
+                })}
+            </div>
+            {/* {this.props.opps.map((opp) => {
               return (
-                <div 
-                ><Link className='btn btn-primary' key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link></div>
+
+                <div><Link className='btn btn-primary' key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link></div>
               )
-            })}
+            })} */}
+            
           </ul>
         </div>
+        {/* {console.log(this.props.search)} */}
       </div>
    )}
 

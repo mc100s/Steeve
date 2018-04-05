@@ -110,6 +110,24 @@ User.remove({}, function(err) {
                   notes : [],
                 },
                 {
+                  SFDCID: "fki84g89",
+                  oppName : 'Leclerc - Product Data Management',
+                  oppAmount:100000,
+                  oppClosingDate : new Date("2018-04-07"),
+                  oppLastModificationDate : new Date("2018-03-02"),
+                  owner : userDoc._id,
+                  notes : [],
+                },
+                {
+                  SFDCID: "fki84g89",
+                  oppName : 'Leclerc - Alpha Architecture',
+                  oppAmount:800000,
+                  oppClosingDate : new Date("2018-04-07"),
+                  oppLastModificationDate : new Date("2018-03-02"),
+                  owner : userDoc._id,
+                  notes : [],
+                },
+                {
                   SFDCID: "fki84g88",
                   oppName : "Vente-Privée - Cleaning User's Data",
                   oppAmount:120000,
@@ -119,8 +137,44 @@ User.remove({}, function(err) {
                   notes : [],
                 },
                 {
+                  SFDCID: "fki84g88",
+                  oppName : "Vente-Privée - Improve CrossCanal UX",
+                  oppAmount:120000,
+                  oppClosingDate : new Date("2018-04-07"),
+                  oppLastModificationDate : new Date("2018-03-02"),
+                  owner : userDoc._id,
+                  notes : [],
+                },
+                {
+                  SFDCID: "fki84g88",
+                  oppName : "Vente-Privée - Mobile First IT Transformation",
+                  oppAmount:120000,
+                  oppClosingDate : new Date("2018-04-07"),
+                  oppLastModificationDate : new Date("2018-03-02"),
+                  owner : userDoc._id,
+                  notes : [],
+                },
+                {
                   SFDCID: "fki84g87",
                   oppName : "Société Générale - Merging old ERP's",
+                  oppAmount:1200000,
+                  oppClosingDate : new Date("2018-04-07"),
+                  oppLastModificationDate : new Date("2018-03-02"),
+                  owner : userDoc._id,
+                  notes : [],
+                },
+                {
+                  SFDCID: "fki84g87",
+                  oppName : "Société Générale - Resizing Infrastructure",
+                  oppAmount:1200000,
+                  oppClosingDate : new Date("2018-04-07"),
+                  oppLastModificationDate : new Date("2018-03-02"),
+                  owner : userDoc._id,
+                  notes : [],
+                },
+                {
+                  SFDCID: "fki84g87",
+                  oppName : "Société Générale - Opening Asian MArket",
                   oppAmount:1200000,
                   oppClosingDate : new Date("2018-04-07"),
                   oppLastModificationDate : new Date("2018-03-02"),
@@ -245,6 +299,117 @@ User.remove({}, function(err) {
                   todoLists :[],
                   owner : userDoc._id ,
 
+                },
+                {
+
+                  creationDate : new Date("2018-03-02"),
+                  modification : [new Date("2018-03-03")],
+                  name : 'Meeting with Project Team', // make coexist SFDC and own name here
+                  currentItemsLabel : ['Metrics', 'Economic Buyer', 'Decision Criteria', 'Decision Process', 'Identified Pain', 'Champion'], // ex: Pain, Buyer, Decision Process,
+                  sfdcItemsLabel : ['Pains', 'Metrics', 'EB'],
+                  persoItemsLabel : ['Personnal Win', 'Hate Somebody'],
+                  textInputs:[{
+                    label : 'Metrics', 
+                    text:'Customers complains have doubled in a month'
+                  }, 
+                  {
+                    label:'Economic Buyer', 
+                    text:"Don't want to reveal who"
+                  },
+                  {
+                    label:'Decision Criteria', 
+                    text:"Cheapest !"},
+                    {
+                      label : 'Decision Process', 
+                      text:'RFP then Proof of Concept then ROI computation then selection and decision'
+                    }, 
+                    {
+                      label:'Identified Pain', 
+                      text:'9 dev spent 15 min per day fixing the prbm !'
+                    },
+                    {
+                      label:'Champion', 
+                      text:'CEO right hand man who wantsToBeCEO thanks to our Awesome Project'}                     
+                  ],  
+                  
+                  // sfdcCustomerContacts:[accounts[0]._id],
+                  todoLists :[],
+                  owner : userDoc._id ,
+
+                },
+                {
+
+                  creationDate : new Date("2018-03-02"),
+                  modification : [new Date("2018-03-03")],
+                  name : 'Phone call with @Jim', // make coexist SFDC and own name here
+                  currentItemsLabel : ['Metrics', 'Economic Buyer', 'Decision Criteria', 'Decision Process', 'Identified Pain', 'Champion'], // ex: Pain, Buyer, Decision Process,
+                  sfdcItemsLabel : ['Pains', 'Metrics', 'EB'],
+                  persoItemsLabel : ['Personnal Win', 'Hate Somebody'],
+                  textInputs:[{
+                    label : 'Metrics', 
+                    text:'Group strategy is to provide single source of truth'
+                  }, 
+                  {
+                    label:'Economic Buyer', 
+                    text:'Board Members'
+                  },
+                  {
+                    label:'Decision Criteria', 
+                    text:"Money "},
+                    {
+                      label : 'Decision Process', 
+                      text:'RFP then Proof of Concept then ROI computation then selection and decision'
+                    }, 
+                    {
+                      label:'Identified Pain', 
+                      text:'9 dev spent 15 min per day fixing the prbm !'
+                    },
+                    {
+                      label:'Champion', 
+                      text:'CEO right hand man who wantsToBeCEO thanks to our Awesome Project'}                     
+                  ],  
+                  
+                  // sfdcCustomerContacts:[accounts[0]._id],
+                  todoLists :[],
+                  owner : userDoc._id ,
+
+                },
+                {
+
+                  creationDate : new Date("2018-03-02"),
+                  modification : [new Date("2018-03-03")],
+                  name : 'Meeting @PascalB, @FredericR', // make coexist SFDC and own name here
+                  currentItemsLabel : ['Metrics', 'Economic Buyer', 'Decision Criteria', 'Decision Process', 'Identified Pain', 'Champion'], // ex: Pain, Buyer, Decision Process,
+                  sfdcItemsLabel : ['Pains', 'Metrics', 'EB'],
+                  persoItemsLabel : ['Personnal Win', 'Hate Somebody'],
+                  textInputs:[{
+                    label : 'Metrics', 
+                    text:'20% of turnover every Quarter'
+                  }, 
+                  {
+                    label:'Economic Buyer', 
+                    text:'Frederic has the budget and has CEO s approval until 200K€ !'
+                  },
+                  {
+                    label:'Decision Criteria', 
+                    text:"Money, timing, Team's adoption'"},
+                    {
+                      label : 'Decision Process', 
+                      text:'RFP then Proof of Concept then ROI computation then selection and decision'
+                    }, 
+                    {
+                      label:'Identified Pain', 
+                      text:'9 dev spent 15 min per day fixing the prbm !'
+                    },
+                    {
+                      label:'Champion', 
+                      text:'CEO right hand man who wantsToBeCEO thanks to our Awesome Project'}                     
+                  ],  
+                  
+                  // sfdcCustomerContacts:[accounts[0]._id],
+                  todoLists :[],
+                  owner : userDoc._id ,
+
                 }
               ]
 
@@ -277,6 +442,30 @@ User.remove({}, function(err) {
                     return Opp.update({_id: opps[2]._id}, 
                       {$push: {
                         notes: [notes[2]._id]
+                      }
+                    })
+                  })
+                  .then( (err, usr) => {
+                    // console.log('usr', err,  opps[0], notes[0])
+                    return Opp.update({_id: opps[3]._id}, 
+                      {$push: {
+                        notes: [notes[3]._id]
+                      }
+                    })
+                  })
+                  .then( (err, usr) => {
+                    // console.log('usr', err,  opps[0], notes[0])
+                    return Opp.update({_id: opps[4]._id}, 
+                      {$push: {
+                        notes: [notes[4]._id]
+                      }
+                    })
+                  })
+                  .then( (err, usr) => {
+                    // console.log('usr', err,  opps[0], notes[0])
+                    return Opp.update({_id: opps[5]._id}, 
+                      {$push: {
+                        notes: [notes[5]._id]
                       }
                     })
                   })

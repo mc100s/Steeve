@@ -19,10 +19,12 @@ class EditSubNote extends Component {
       didTitleChanged : false,
       title: '',
       currentInput:'',
-      new:false
-    
+      new:false,
+      editMode: []
+      
+      
     }
-
+    
   } 
   getFitleredNotes() {
     let filteredNotes = []
@@ -33,7 +35,14 @@ class EditSubNote extends Component {
     }
     return filteredNotes;
   }
-
+  
+  changeLabel(e) {
+    // console.log('e.key',e.key)
+    if(e.key == "Enter") {
+      this.setState({editMode:[]});
+      this.props.handleSave(e)
+    }
+  }
   
   render() {      
     this.opportunityId = this.props.match.params.opportunityId;
@@ -43,45 +52,64 @@ class EditSubNote extends Component {
         this.selectedOpp = this.props.opps[i]
       }
     } 
-                         
+    
     return (
       <div className="col-6"> 
-        <br/>
-          {/* {console.log('this selecyeopp',this.selectedOpp)} */}
-          {this.selectedOpp && this.selectedOpp.notes.filter(o =>o._id ===this.props.match.params.noteId ).map((note)=> {
-            // console.log("found")
-              return (
-                <div>
-                  <div>
-                    {/* handleChangePersoInput est sur l'input de saisie et donc au click du button je vais ajouter un nouveau perso input dont c'est l'age du capitaine 
-                      Puis affichage de 'lensemvke des text input  avec le handlechangepersoInput*/}
-                      <button type="submit"  onClick={(e)=> this.props.newLabelPerso(e,this.opportunityId, note._id, "l'age du capitaine")}>Add Your Label</button>
-
-                  {/* <button type="submit"  onClick={(e)=> this.props.handleChangePersoInput(e,this.opportunityId, note._id, "l'age du capitaine")}>Add Your Label</button> */}
-
-                  </div>
-                  {/* {console.log('map is working')} */}
-                  <label for="exampleInput1" className="bmd-label-floating">Title</label>
-                  <input value={note.name} onChange={(e) => this.props.onChangeTitle(e, this.opportunityId, note._id)} type="text" class="form-control" id="exampleInput1"/><br/>
-                  {/* faire le frere pour tedt perso + modifiable soit un input et un textearea*/}
-                  {note.textInputs.map((textInput)=> (
+      <br/>
+      {this.selectedOpp && this.selectedOpp.notes.filter(o =>o._id ===this.props.match.params.noteId ).map((note)=> {
+        return (
+          <div>
+            <div>
+            <button type="submit" onClick={(e)=> this.props.createLabelPerso(e,this.opportunityId, note._id)}>Add Your Label</button> 
+            </div>
+            <label for="exampleInput1" className="bmd-label-floating">Title</label>
+            <input key={note._id} value={note.name} onChange={(e) => this.props.onChangeTitle(e, this.opportunityId, note._id)} type="text" className="form-control" id="exampleInput1"/><br/>
+              
+              {note.persoItems.map((persoItem,idx)=> {
+                if (this.state.editMode.indexOf(idx)==-1) {
+                  return (
                     <div className="form-group">
-                      <label for="exampleInput1" className="bmd-label-floating">{textInput.label}</label>
-                      <textarea value={textInput.text} onChange={(e) => this.props.onChange(e, this.opportunityId, note._id, textInput.label)} type="text" className="form-control col-12" rows='2'></textarea>
+
+                    <label for="exampleInput1" className="bmd-label-floating">{persoItem.label}
+                    <i class="material-icons" onClick={()=>{this.setState({editMode : [idx]})}}>edit</i></label>
                     
+                    <textarea key={note._id} value={persoItem.text} onChange={(e) => this.props.handleChangePersoInput(e, this.opportunityId, note._id, persoItem.label)} type="text" className="form-control col-12" rows='1'></textarea>
                     </div>
                   )
-                  )}
-                </div>
-              )
-            })}
-        <input type="submit" value="Finish" onClick={this.props.handleSubmit}/>
-        <br/>
-      </div>
-    )
-  }
+
+                } else {
+                  return (
+                    <div className="form-group">
+
+                    <input onChange={(e) => {this.props.changeLabelPerso(e,this.opportunityId, note._id,idx)}} onKeyPress= {(e)=> this.changeLabel(e)} value = {persoItem.label} type='text' className="bmd-label-floating">
+                    </input><i onClick={(e)=> {this.setState({editMode:[]}); this.props.handleSave(e)}} class="material-icons">check box</i>
+                    
+                    <textarea value={persoItem.text} onChange={(e) => this.props.handleChangePersoInput(e, this.opportunityId, note._id, persoItem.label)} type="text" className="form-control col-12" rows='2'></textarea>
+                    </div>
+                  )
+                }
+              }
+              )}    
+          
+          {note.textInputs.map((textInput)=> (
+            <div key={textInput.label} className="form-group">
+            <label for="exampleInput1" className="bmd-label-floating">{textInput.label}</label>
+            <textarea key={textInput.label} value={textInput.text} onChange={(e) => this.props.onChange(e, this.opportunityId, note._id, textInput.label)} type="text" className="form-control col-12" rows='2'></textarea>
+            
+            </div>
+          )
+        )}
+        </div>
+      )
+    })}
+    <input type="submit" value="Finish" onClick={this.props.handleSubmit}/>
+    
+    <br/>
+  </div>
+)
+}
 }
 
-  
-  export default EditSubNote;
+
+export default EditSubNote;
 

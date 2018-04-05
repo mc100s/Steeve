@@ -27,8 +27,8 @@ class ListNotes extends Component {
         <button onClick={() => this.props.handleNewNote(this.props.match.params.opportunityId)}>Add Note</button>
           {this.selectedOpp && this.selectedOpp.notes.map((note)=> {
             return (
-              <ol>
-                <li><Link to={`notes/${note._id}`} onClick={()=> {console.log('clicked')}}>{note.name}</Link></li>
+              <ol key={note._id}>
+                <li><Link  to={`notes/${note._id}`} onClick={()=> {console.log('clicked')}}>{note.name}</Link></li>
               </ol>
             )
           })
