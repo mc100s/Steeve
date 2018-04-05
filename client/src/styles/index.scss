@@ -1,0 +1,13 @@
+// My Bootstrap configuration
+@import '_custom_bootstrap';
+
+// Bootstrap library
+// @import 'bootstrap/scss/bootstrap';
+@import 'material-kit/scss/material-kit.scss';
+@import '_custom_bootstrap';
+
+// Here you can import more .scss files or write scss code.
+
+.button-label {
+  margin: 4px
+}
