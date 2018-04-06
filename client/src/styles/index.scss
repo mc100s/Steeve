@@ -4,7 +4,6 @@
 // Bootstrap library
 // @import 'bootstrap/scss/bootstrap';
 @import 'material-kit/scss/material-kit.scss';
-@import '_custom_bootstrap';
 
 // Here you can import more .scss files or write scss code.
 
@@ -99,4 +98,9 @@ div.EditSubNote > div > div{
   align-items:center;
   flex-grow: 0;
   margin-top: 10%
+}
+
+
+.navbar .navbar-nav .nav-item .nav-link {
+  padding: 0.5rem;
 }

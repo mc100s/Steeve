@@ -40,14 +40,10 @@ class Header extends Component {
   render() {                
     return (
       <div className="">
-        <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+        <nav className="navbar navbar-expand-sm navbar-light bg-primary">
           <div className="container">
-              <Link className="navbar-brand"  to="/home">Steeve</Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div className="collapse navbar-collapse" id="navbarNav">
+            <Link className="navbar-brand" to="/home">Steeve</Link>
+            <div className="" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item ">
                   <Link className="nav-link" to="/my-business"> My Business</Link>
@@ -66,12 +62,7 @@ class Header extends Component {
                 </li>
               </ul>
             </div>
-
-            {/* {!api.isLoggedIn() && <Link to="/signup">Signup</Link> }
-            {!api.isLoggedIn() && <Link to="/login">Login</Link> }
-            {api.isLoggedIn() && <Link to="/home" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }  */}
           </div>
-          
         </nav>
 
         <Switch>
