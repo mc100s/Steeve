@@ -54,15 +54,14 @@ class EditSubNote extends Component {
     } 
     
     return (
-      <div className="col-6"> 
-      <br/>
+      <div className="EditSubNote"> 
       {this.selectedOpp && this.selectedOpp.notes.filter(o =>o._id ===this.props.match.params.noteId ).map((note)=> {
         return (
           <div>
             <div>
-            <button type="submit" onClick={(e)=> this.props.createLabelPerso(e,this.opportunityId, note._id)}>Add Your Label</button> 
+            <button type="submit" className="btn btn-rose btn-round" onClick={(e)=> this.props.createLabelPerso(e,this.opportunityId, note._id)}> <i class="material-icons">add</i> Add Your Label</button> 
             </div>
-            <label for="exampleInput1" className="bmd-label-floating">Title</label>
+            <label className="bmd-label-floating">Title</label>
             <input key={note._id} value={note.name} onChange={(e) => this.props.onChangeTitle(e, this.opportunityId, note._id)} type="text" className="form-control" id="exampleInput1"/><br/>
               
               {note.persoItems.map((persoItem,idx)=> {
@@ -70,7 +69,7 @@ class EditSubNote extends Component {
                   return (
                     <div className="form-group">
 
-                    <label for="exampleInput1" className="bmd-label-floating">{persoItem.label}
+                    <label  className="bmd-label-floating">{persoItem.label}
                     <i class="material-icons" onClick={()=>{this.setState({editMode : [idx]})}}>edit</i></label>
                     
                     <textarea key={note._id} value={persoItem.text} onChange={(e) => this.props.handleChangePersoInput(e, this.opportunityId, note._id, persoItem.label)} type="text" className="form-control col-12" rows='1'></textarea>
@@ -93,8 +92,8 @@ class EditSubNote extends Component {
           
           {note.textInputs.map((textInput)=> (
             <div key={textInput.label} className="form-group">
-            <label for="exampleInput1" className="bmd-label-floating">{textInput.label}</label>
-            <textarea key={textInput.label} value={textInput.text} onChange={(e) => this.props.onChange(e, this.opportunityId, note._id, textInput.label)} type="text" className="form-control col-12" rows='2'></textarea>
+            <label  className="bmd-label-floating">{textInput.label}</label>
+            <textarea key={textInput.label} value={textInput.text} onChange={(e) => this.props.onChange(e, this.opportunityId, note._id, textInput.label)} type="text" className="form-control col-12" rows='1'></textarea>
             
             </div>
           )
@@ -102,7 +101,7 @@ class EditSubNote extends Component {
         </div>
       )
     })}
-    <input type="submit" value="Finish" onClick={this.props.handleSubmit}/>
+    <input type="submit" id='save'value="Save" className="btn btn-rose btn-round" onClick={this.props.handleSubmit}/>
     
     <br/>
   </div>

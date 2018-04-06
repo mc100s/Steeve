@@ -21,15 +21,17 @@ class Search extends Component {
 
   render() {                
     return (
-      <div>
+      <div className='Search-left'>
       <form>
-        <label> Search
-          <input type="text"
+        
+        <i class="material-icons">search</i>
+        <textarea  value={this.props.search} onChange={(e)=> {this.props.handleSearch(e)}} type="text" className="form-control rose col-6" rows='1'></textarea>
+          {/* <input type="text"
             placeholder="Account, Opp, Note"
             value={this.props.search}
             onChange={(e)=> {this.props.handleSearch(e)}}
-          />
-        </label>
+          /> */}
+  
         </form>
       </div> 
     )

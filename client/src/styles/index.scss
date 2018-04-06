@@ -11,3 +11,92 @@
 .button-label {
   margin: 4px
 }
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start
+
+}
+
+.opportunity-link {
+  display: block;
+}
+
+.ListOpportunities {
+  flex-grow: 0;
+  margin-left: -1.5em;
+}
+
+.ListNotes {
+  flex-grow: 0;
+}
+
+.EditSubNote {
+  flex-grow: 2;
+}
+
+.btn-outline-primary.active {
+  background-color: $brand-primary !important;
+  color: white !important;
+}
+
+div.ListOpportunities > div > form {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  flex-grow: 0;
+}
+
+
+
+div.ListNotes > a:nth-child(2) {
+  margin-top:3.9em;
+}
+
+div > div > div.ListNotes {
+  margin-left: 1em;
+}
+
+// THIS IS THE NOTE TITLE
+#exampleInput1 {
+  margin-left: 1em;
+ width:90%
+}
+
+// THIS IS THE INPUTS OF A NOTE
+div.EditSubNote > div > div{
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+//this is the save Button
+#save {
+  margin-bottom: 2em;
+
+}
+
+//Login email Button
+#root > div > div > div > div > form > div.card-body > span:nth-child(1) > div > input {
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+//Login email icone
+#root > div > div > div > div > form > div.card-body > span:nth-child(1) > div > span > i {
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+.card-signup {
+
+  width: 30%
+}
+
+.Login {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  flex-grow: 0;
+  margin-top: 10%
+}

@@ -159,6 +159,9 @@ createLabelPerso(e, opportunityId, noteId) {
   selectedOpp = (event) =>{
     this.setState({selectedOpp:event})
     console.log('selectedopp',event)
+    console.log("event.target", event.target);
+    console.log("event.target.focus", event.target.focus);
+    event.target.blur();
     this.getFilteredNote(event)
   }
   
@@ -350,22 +353,24 @@ createLabelPerso(e, opportunityId, noteId) {
   render() {                
     return (
       <div className="App">
-        <div className="row">
-          <Route path="/my-business" render={() => <ListOpportunities getSearchedOpps={this.getSearchedOpps.bind(this)} onClick={this.selectedOpp.bind(this)} opps={this.state.opps} search={this.state.search} handleSearch={this.handleSearch.bind(this)}/>} />
-          <Route path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} handleNewNote={this.handleNewNote.bind(this)}/>} />
-          <Route path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
-            <EditSubNote {...props} updateOppIdNoteID={this.updateOppIdNoteID} 
-             createLabelPerso ={this.createLabelPerso.bind(this)}
-              onChangeTitle={this.handleChangeTitle.bind(this)}  
-              opps={this.state.opps} 
-              handleChangePersoInput = {this.handleChangePersoInput.bind(this)}
-              newLabelPerso = {this.newLabelPerso.bind(this)} 
-              labelPerso= {this.state.labelPerso}
-              onChange={this.handleChange.bind(this)}
-              changeLabelPerso = {this.changeLabelPerso.bind(this) } 
-              handleSave={this.handleSave.bind(this)}
-              handleSubmit={this.handleSubmit.bind(this)} />
-          } />
+        <div className="flexbox">
+        
+            <Route path="/my-business" render={() => <ListOpportunities getSearchedOpps={this.getSearchedOpps.bind(this)} onClick={this.selectedOpp.bind(this)} opps={this.state.opps} search={this.state.search} handleSearch={this.handleSearch.bind(this)}/>} />
+            <Route path="/my-business/:opportunityId/notes" render={(props) => <ListNotes {...props} opps={this.state.opps} handleNewNote={this.handleNewNote.bind(this)}/>} />
+            <Route path="/my-business/:opportunityId/notes/:noteId" render={(props) => 
+              <EditSubNote {...props} updateOppIdNoteID={this.updateOppIdNoteID} 
+              createLabelPerso ={this.createLabelPerso.bind(this)}
+                onChangeTitle={this.handleChangeTitle.bind(this)}  
+                opps={this.state.opps} 
+                handleChangePersoInput = {this.handleChangePersoInput.bind(this)}
+                newLabelPerso = {this.newLabelPerso.bind(this)} 
+                labelPerso= {this.state.labelPerso}
+                onChange={this.handleChange.bind(this)}
+                changeLabelPerso = {this.changeLabelPerso.bind(this) } 
+                handleSave={this.handleSave.bind(this)}
+                handleSubmit={this.handleSubmit.bind(this)} />
+            } />
+      
         </div>
       </div>
     );

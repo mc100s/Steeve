@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, NavLink } from 'react-router-dom';
 import Search from './Search';
 
 
@@ -14,16 +14,22 @@ class ListOpportunities extends Component {
       value:''
     } 
   };
+
+  isActiveOpp(opp) {
+    console.log("DEBUG opp", opp);
+    
+    return true
+  }
   
    render() {                
     return (
-      <div className="col-3">
-        <div className='FirstBar'>
+      <div className="ListOpportunities">
+        <h4 className='myOpps'>My Opportunities</h4>
         <Search search={this.props.search} handleSearch={this.props.handleSearch.bind(this)}/>
           <ul> 
            <div> 
               {this.props.getSearchedOpps().map((opp) => {
-                  return (<Link className='btn btn-primary' key={opp._id} onClick={()=>{this.props.onClick.bind(this)}}to={`/my-business/${opp._id}/notes`}>{opp.oppName}</Link>)
+                  return (<NavLink className='btn opportunity-link btn-outline-primary'   key={opp._id} onClick={(e)=>{this.props.onClick(e)}} to={`/my-business/${opp._id}/notes`}>{opp.oppName}</NavLink>)
                 })}
             </div>
             {/* {this.props.opps.map((opp) => {
@@ -34,7 +40,7 @@ class ListOpportunities extends Component {
             })} */}
             
           </ul>
-        </div>
+
         {/* {console.log(this.props.search)} */}
       </div>
    )}

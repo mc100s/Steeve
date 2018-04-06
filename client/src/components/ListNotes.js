@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, NavLink } from 'react-router-dom';
 import api from '../api';
 
 class ListNotes extends Component {
@@ -23,13 +23,12 @@ class ListNotes extends Component {
       }
     }                
     return (
-      <div className="col-3"> 
-        <button onClick={() => this.props.handleNewNote(this.props.match.params.opportunityId)}>Add Note</button>
+      <div className="ListNotes"> 
+        <button className="btn btn-rose btn-round"
+        onClick={() => this.props.handleNewNote(this.props.match.params.opportunityId)}><i class="material-icons">add</i> Add Note</button>
           {this.selectedOpp && this.selectedOpp.notes.map((note)=> {
             return (
-              <ol key={note._id}>
-                <li><Link  to={`notes/${note._id}`} onClick={()=> {console.log('clicked')}}>{note.name}</Link></li>
-              </ol>
+              <NavLink className='btn opportunity-link btn-outline-primary'  key={note._id} to={`/my-business/${this.opportunityId}/notes/${note._id}`} onClick={()=> {console.log('clicked')}}>{note.name}</NavLink>
             )
           })
         }
